@@ -20,6 +20,11 @@ export default {
   data() {
     return {
       pickerOptions: {
+        firstDayOfWeek: 1,
+        disabledDate(date) {
+          // TODO: disable dates of documents out of project
+          return date > Date.now();
+        },
         shortcuts: [
           {
             text: "Last week",
