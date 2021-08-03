@@ -19,10 +19,7 @@ export default {
     data: Array,
   },
   data() {
-    return {
-      dates: ["2021-03-1", "2021-03-2", "2021-03-3", "2021-03-4", "2021-03-5"],
-      values: [5, 6, 2, 3, 5.5],
-    };
+    return {};
   },
 };
 </script>

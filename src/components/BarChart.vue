@@ -11,7 +11,7 @@ export default {
   components: {
     highcharts: Chart,
   },
-  props: ["dates", "values", "title"],
+  props: ["dates", "values", "title", "plotOptions"],
   data() {
     return {
       chartOptions: {
@@ -23,6 +23,13 @@ export default {
         },
         series: [{ data: this.values }],
         xAxis: { categories: this.dates },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+            },
+          },
+        },
       },
     };
   },
