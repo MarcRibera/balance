@@ -1,28 +1,39 @@
 <template>
   <div class="">
-    <highcharts :options="chartOptions"></highcharts>
+    <highcharts :options="options"></highcharts>
   </div>
 </template>
 
 <script>
 import { Chart } from "highcharts-vue";
+import { dateFormatter } from "@/utils/utils";
 
 export default {
   components: {
     highcharts: Chart,
   },
-  props: ["dates", "values", "title", "plotOptions"],
-  data() {
-    return {
-      chartOptions: {
+  props: ["categories", "series", "title", "categoriesAreDates"],
+  computed: {
+    options() {
+      return {
         chart: {
           type: "column",
         },
         title: {
           text: this.title,
         },
-        series: [{ data: this.values }],
-        xAxis: { categories: this.dates },
+        series: this.series,
+        xAxis: {
+          categories: this.categories,
+          labels: {
+            formatter: function () {
+              if (this.categoriesAreDates) {
+                return dateFormatter(this.value);
+              }
+              return this.value;
+            },
+          },
+        },
         plotOptions: {
           series: {
             dataLabels: {
@@ -30,8 +41,11 @@ export default {
             },
           },
         },
-      },
-    };
+      };
+    },
+  },
+  data() {
+    return {};
   },
 };
 </script>

@@ -9,7 +9,6 @@
           <DateRangePicker v-on:getCurrentDates="manageReceivedDates" />
         </el-header>
         <el-main>
-          <ChartTest />
           <TeamCharts />
           <MembersBarchart :data="membersData" />
         </el-main>
@@ -24,7 +23,6 @@ import DateRangePicker from "./components/DateRangePicker.vue";
 import MembersBarchart from "./components/MembersBarchart.vue";
 import LoadData from "./components/LoadData.vue";
 import TeamCharts from "./components/TeamCharts.vue";
-import ChartTest from "./components/ChartTest.vue";
 
 export default {
   name: "App",
@@ -33,7 +31,6 @@ export default {
     MembersBarchart,
     LoadData,
     TeamCharts,
-    ChartTest,
   },
   data() {
     return {
@@ -49,6 +46,28 @@ export default {
             "2021-03-5",
           ],
           values: [5, 6, 2, 3, 5.5],
+        },
+        {
+          name: "Pippin",
+          dates: [
+            "2021-03-1",
+            "2021-03-2",
+            "2021-03-3",
+            "2021-03-4",
+            "2021-03-5",
+          ],
+          values: [3, 5, 8, 1, 3.5],
+        },
+        {
+          name: "pepe",
+          dates: [
+            "2021-03-1",
+            "2021-03-2",
+            "2021-03-3",
+            "2021-03-4",
+            "2021-03-5",
+          ],
+          values: [3, 5, 8, 1, 3.5],
         },
         {
           name: "Pippin",
