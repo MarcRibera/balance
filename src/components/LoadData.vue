@@ -1,10 +1,14 @@
 <template>
-  <el-button type="primary" @click="upload"
-    >Upload<i class="el-icon-upload el-icon-right"></i
-  ></el-button>
+  <el-button type="primary" @click="upload">
+    Upload Team Work
+    <i class="el-icon-upload el-icon-right"></i>
+  </el-button>
 </template>
 
 <script>
+// this component is only for test porpouse
+// the data showed is getted into teamchart component
+
 import * as d3 from "d3";
 
 export default {
@@ -16,9 +20,7 @@ export default {
       console.log("upload form uload Data component");
       const data = await d3.csv("/team_work_comma.csv");
       console.log(data);
-      for (const { name } of data) {
-        console.log(name);
-      }
+      this.getSeriesTeamWork(data);
     },
   },
 };
