@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="200px">
+      <!-- <el-aside width="200px">
         <LoadData />
-      </el-aside>
+      </el-aside> -->
       <el-container>
         <el-header>
           <DateRangePicker v-on:getCurrentDates="manageReceivedDates" />
@@ -21,7 +21,6 @@
 <script>
 import DateRangePicker from "./components/DateRangePicker.vue";
 import MembersBarchart from "./components/MembersBarchart.vue";
-import LoadData from "./components/LoadData.vue";
 import TeamCharts from "./components/TeamCharts.vue";
 
 export default {
@@ -29,7 +28,6 @@ export default {
   components: {
     DateRangePicker,
     MembersBarchart,
-    LoadData,
     TeamCharts,
   },
   data() {

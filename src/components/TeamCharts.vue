@@ -2,12 +2,7 @@
   <el-row>
     <el-col :span="12" v-if="categoriesTeamWork.length > 0">
       <p>Team Work: {{ totalHours }} hours</p>
-      <BarChart
-        :categories="categoriesTeamWork"
-        :series="seriesTeamWork"
-        :title="'Team BarChart'"
-        :categoriesAreDates="true"
-      />
+      <BarChart :series="seriesTeamWork" :title="'Team BarChart'" />
     </el-col>
 
     <el-col :span="8" v-if="categoriesSetas.length > 0">
@@ -16,7 +11,6 @@
         :categories="categoriesSetas"
         :series="seriesSetas"
         :title="'Setas'"
-        :categoriesAreDates="false"
       />
     </el-col>
 
@@ -45,7 +39,7 @@ export default {
       totalHoursSetas: null,
     };
   },
-  async mounted() {
+  mounted() {
     this.loadDataTeamWork();
     this.loadDataTeamSetas();
   },
@@ -70,14 +64,14 @@ export default {
     async loadDataTeamSetas() {
       const data = await csv_loader("q302/team_setas.csv");
       console.log("setas", data);
-      let names = [];
+      let authors = [];
       let timeSpentHoursSetas = [];
 
-      for (const { author_name, time_spent_hours } of data) {
-        names.push(author_name);
+      for (const { author, time_spent_hours } of data) {
+        authors.push(author);
         timeSpentHoursSetas.push(parseFloat(time_spent_hours));
       }
-      this.categoriesSetas = [...names];
+      this.categoriesSetas = [...authors];
       this.seriesSetas = [{ name: "Setas Hours", data: timeSpentHoursSetas }];
       this.totalHoursSetas = timeSpentHoursSetas.reduce(
         (accumulator, currentValue) => accumulator + currentValue
