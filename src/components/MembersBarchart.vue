@@ -1,10 +1,9 @@
 <template>
-  <el-row>
-    <el-col :span="6" v-for="(member, index) in membersData" :key="index">
+  <el-row class="members-row">
+    <el-col :span="8" v-for="(member, index) in membersData" :key="index">
       <BarChart
         :series="member.series"
-        :title="member.name"
-        :categories="categories"
+        :title="getMemberTitle(member.name, member.totalHours)"
       />
     </el-col>
   </el-row>
@@ -16,60 +15,72 @@ import { csv as csv_loader } from "d3";
 
 export default {
   components: { BarChart },
-  props: {
-    data: Array,
-  },
+  props: ["sprintCode"],
   data() {
     return {
       membersData: [],
       categories: [],
-      loading: true,
     };
   },
-  mounted() {
-    this.loadData();
-
-    setTimeout(() => {
-      this.fillCategories();
-    }, 1000);
+  mounted() {},
+  watch: {
+    sprintCode() {
+      this.loadData();
+    },
   },
   methods: {
-    fillCategories() {
-      for (var i = 1; i < 15; i++) {
-        const item = "Day " + i;
-        this.categories.push(item);
-      }
-
-      console.log(this.categories);
-    },
     fillMembersData(data) {
+      this.membersData = [];
       let currentAuthor = "";
       let index = -1;
 
       data.forEach((item) => {
         if (item.author !== currentAuthor) {
-          index += 1;
           currentAuthor = item.author;
+          index += 1;
 
-          this.membersData.push({
+          const memberDataEmpty = {
             name: currentAuthor,
-            series: { name: "worked hours", data: [] },
-          });
+            totalHours: 0,
+            series: [
+              { name: "worked hours", data: [] },
+              {
+                name: "reference",
+                data: this.getWorkReference(currentAuthor),
+                opacity: 0.6,
+              },
+            ],
+          };
+
+          this.membersData.push(memberDataEmpty);
         }
 
-        this.membersData[index].series.data.push(
-          parseFloat(item.time_spent_hours)
-        );
+        const hours = parseFloat(item.time_spent_hours);
+        this.membersData[index].series[0].data.push(hours);
+        this.membersData[index].totalHours += hours;
       });
 
       console.log(this.membersData);
     },
     async loadData() {
-      const data = await csv_loader("/q302/members_work.csv");
+      const data = await csv_loader(this.sprintCode + "/members_work.csv");
       this.fillMembersData(data);
+    },
+    getMemberTitle(name, hours) {
+      return `${name} - ${hours}h`;
+    },
+    getWorkReference(author) {
+      if (author === "Marc R") {
+        return [3, 5, 4, 0, 0, 5, 5, 3, 5, 4, 0, 0, 4, 2];
+      }
+      return [4, 6, 5, 0, 0, 6, 6, 4, 6, 5, 0, 0, 5, 3];
     },
   },
 };
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.members-row {
+  margin-top: 50px;
+}
+</style>

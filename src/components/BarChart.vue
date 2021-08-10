@@ -18,6 +18,7 @@ export default {
       return {
         chart: {
           type: "column",
+          spacing: [40, 40, 40, 40],
         },
         title: {
           text: this.title,
@@ -39,7 +40,7 @@ export default {
         },
         yAxis: {
           min: 0,
-          max: null,
+          softMax: 10,
         },
         plotOptions: {
           series: {
@@ -61,12 +62,22 @@ export default {
   },
   methods: {
     getSprintDays() {
-      let categories = [];
-      for (var i = 1; i < 15; i++) {
-        const item = "Day " + i;
-        categories.push(item);
-      }
-      return categories;
+      return [
+        "Wed 1",
+        "Thu 2",
+        "Fri 3",
+        "Sat 4",
+        "Sun 5",
+        "Mon 6",
+        "Tue 7",
+        "Wed 8",
+        "Thu 9",
+        "Fri 10",
+        "Sat 11",
+        "Sun 12",
+        "Mon 13",
+        "Thu 14",
+      ];
     },
   },
 };

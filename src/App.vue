@@ -6,11 +6,11 @@
       </el-aside> -->
       <el-container>
         <el-header>
-          <DateRangePicker v-on:getCurrentDates="manageReceivedDates" />
+          <Selector @select="setCurrentSprint" />
         </el-header>
         <el-main>
-          <TeamCharts />
-          <MembersBarchart :data="membersData" />
+          <TeamCharts :sprintCode="currentSprint" />
+          <MembersBarchart :sprintCode="currentSprint" />
         </el-main>
         <el-footer>Footer</el-footer>
       </el-container>
@@ -19,72 +19,26 @@
 </template>
 
 <script>
-import DateRangePicker from "./components/DateRangePicker.vue";
 import MembersBarchart from "./components/MembersBarchart.vue";
 import TeamCharts from "./components/TeamCharts.vue";
-
+import Selector from "./components/Selector.vue";
 export default {
   name: "App",
   components: {
-    DateRangePicker,
     MembersBarchart,
     TeamCharts,
+    Selector,
   },
   data() {
     return {
       dates: [],
-      membersData: [
-        {
-          name: "Meriadock",
-          dates: [
-            "2021-03-1",
-            "2021-03-2",
-            "2021-03-3",
-            "2021-03-4",
-            "2021-03-5",
-          ],
-          values: [5, 6, 2, 3, 5.5],
-        },
-        {
-          name: "Pippin",
-          dates: [
-            "2021-03-1",
-            "2021-03-2",
-            "2021-03-3",
-            "2021-03-4",
-            "2021-03-5",
-          ],
-          values: [3, 5, 8, 1, 3.5],
-        },
-        {
-          name: "pepe",
-          dates: [
-            "2021-03-1",
-            "2021-03-2",
-            "2021-03-3",
-            "2021-03-4",
-            "2021-03-5",
-          ],
-          values: [3, 5, 8, 1, 3.5],
-        },
-        {
-          name: "Pippin",
-          dates: [
-            "2021-03-1",
-            "2021-03-2",
-            "2021-03-3",
-            "2021-03-4",
-            "2021-03-5",
-          ],
-          values: [3, 5, 8, 1, 3.5],
-        },
-      ],
+      currentSprint: "",
     };
   },
   methods: {
-    manageReceivedDates(dates) {
-      this.dates = dates;
-      console.log(dates);
+    setCurrentSprint(value) {
+      this.currentSprint = value;
+      console.log("set current sprint", value);
     },
   },
 };

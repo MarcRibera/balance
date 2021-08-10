@@ -1,21 +1,18 @@
 <template>
   <el-row>
     <el-col :span="12" v-if="categoriesTeamWork.length > 0">
-      <p>Team Work: {{ totalHours }} hours</p>
-      <BarChart :series="seriesTeamWork" :title="'Team BarChart'" />
+      <BarChart :series="seriesTeamWork" :title="barchartTitle" />
     </el-col>
 
     <el-col :span="8" v-if="categoriesSetas.length > 0">
-      <p>Setas: {{ totalHoursSetas }} hours</p>
       <BarChart
         :categories="categoriesSetas"
         :series="seriesSetas"
-        :title="'Setas'"
+        :title="barchartTitleSetas"
       />
     </el-col>
 
     <el-col :span="4">
-      <p>//</p>
       <PieChart :series="seriesPiechart" :title="'Setas Impact'" />
     </el-col>
   </el-row>
@@ -28,6 +25,7 @@ import { csv as csv_loader } from "d3";
 
 export default {
   components: { BarChart, PieChart },
+  props: ["sprintCode"],
   data() {
     return {
       categoriesTeamWork: [],
@@ -39,13 +37,24 @@ export default {
       totalHoursSetas: null,
     };
   },
-  mounted() {
-    this.loadDataTeamWork();
-    this.loadDataTeamSetas();
+  mounted() {},
+  computed: {
+    barchartTitle() {
+      return `Tech Team - ${this.totalHours}h`;
+    },
+    barchartTitleSetas() {
+      return `Setas - ${this.totalHoursSetas}h`;
+    },
+  },
+  watch: {
+    sprintCode() {
+      this.loadDataTeamWork();
+      this.loadDataTeamSetas();
+    },
   },
   methods: {
     async loadDataTeamWork() {
-      const data = await csv_loader("/q302/team_work.csv");
+      const data = await csv_loader(this.sprintCode + "/team_work.csv");
       console.log("TeamChart COMPONENT loaded data", data);
 
       let dates = [];
@@ -62,7 +71,7 @@ export default {
       this.totalHours = Math.round(this.totalHours * 10) / 10;
     },
     async loadDataTeamSetas() {
-      const data = await csv_loader("q302/team_setas.csv");
+      const data = await csv_loader(this.sprintCode + "/team_setas.csv");
       console.log("setas", data);
       let authors = [];
       let timeSpentHoursSetas = [];
