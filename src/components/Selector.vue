@@ -11,38 +11,38 @@
 </template>
 
 <script>
+import { getSprintsCodes } from "../../public/sprintCodes.js";
+
 export default {
   data() {
     return {
-      options: [
-        {
-          value: "q302",
-          label: "Sprint Q302",
-        },
-        {
-          value: "q301",
-          label: "Sprint Q301",
-        },
-        {
-          value: "q204",
-          label: "Sprint Q204",
-        },
-        {
-          value: "q203",
-          label: "Sprint Q203",
-        },
-      ],
+      options: [],
       value: "",
+      sprintCodes: [],
     };
   },
   mounted() {
-    // set defaul value
-    this.value = "q302";
-    this.emitChange(this.value);
+    this.sprintCodes = getSprintsCodes();
+    this.createSelectorOptions();
   },
   methods: {
     emitChange(value) {
       this.$emit("select", value);
+    },
+    createSelectorOptions() {
+      this.sprintCodes.sort((a, b) => (a < b ? 1 : -1));
+
+      this.sprintCodes.forEach((item) => {
+        const newItem = {
+          value: item,
+          label: `Sprint ${item.toUpperCase()}`,
+        };
+        this.options.push(newItem);
+      });
+
+      // set inital value
+      this.value = this.sprintCodes[0];
+      this.emitChange(this.value);
     },
   },
 };
