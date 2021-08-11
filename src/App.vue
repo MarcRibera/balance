@@ -48,11 +48,8 @@ export default {
   methods: {
     setCurrentSprint(value) {
       this.currentSprint = value;
-      console.log("set current sprint", value);
     },
     getSprintDates(dates) {
-      console.log("sprint dates", dates);
-
       this.since = sprintDateFormatter(dates[0]);
       this.until = sprintDateFormatter(dates[dates.length - 1]);
     },

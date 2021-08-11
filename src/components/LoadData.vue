@@ -17,9 +17,7 @@ export default {
   },
   methods: {
     async upload() {
-      console.log("upload form uload Data component");
       const data = await d3.csv("/team_work_comma.csv");
-      console.log(data);
       this.getSeriesTeamWork(data);
     },
   },

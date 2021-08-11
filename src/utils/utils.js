@@ -1,5 +1,4 @@
 export function dateFormatter(dateStr) {
-  console.log(typeof dateStr);
   const date = new Date(dateStr);
 
   return new Intl.DateTimeFormat("en-GB", {
@@ -10,7 +9,6 @@ export function dateFormatter(dateStr) {
 }
 
 export function sprintDateFormatter(dateStr) {
-  console.log(typeof dateStr);
   const date = new Date(dateStr);
 
   return new Intl.DateTimeFormat("en-GB", {

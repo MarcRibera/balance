@@ -73,8 +73,6 @@ export default {
       });
 
       this.membersData.sort((a, b) => (a.name > b.name ? 1 : -1));
-
-      console.log("this.membersData", this.membersData);
     },
     async loadData() {
       const data = await csv_loader(this.sprintCode + "/members_work.csv");
