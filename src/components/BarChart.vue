@@ -44,6 +44,7 @@ export default {
         },
         plotOptions: {
           series: {
+            // borderColor: "#303030",
             dataLabels: {
               enabled: true,
             },

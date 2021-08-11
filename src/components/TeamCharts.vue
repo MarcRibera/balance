@@ -1,10 +1,10 @@
 <template>
   <el-row>
-    <el-col :span="12" v-if="categoriesTeamWork.length > 0">
+    <el-col :span="12">
       <BarChart :series="seriesTeamWork" :title="barchartTitle" />
     </el-col>
 
-    <el-col :span="8" v-if="categoriesSetas.length > 0">
+    <el-col :span="8">
       <BarChart
         :categories="categoriesSetas"
         :series="seriesSetas"
@@ -13,7 +13,7 @@
     </el-col>
 
     <el-col :span="4">
-      <PieChart :series="seriesPiechart" :title="'Setas Impact'" />
+      <PieChart :series="seriesPiechart" :title="piechartTitleSetas" />
     </el-col>
   </el-row>
 </template>
@@ -23,27 +23,33 @@ import BarChart from "./BarChart.vue";
 import PieChart from "./PieChart.vue";
 import { csv as csv_loader } from "d3";
 
+const REDUCER = (accumulator, currentValue) => accumulator + currentValue;
+
 export default {
   components: { BarChart, PieChart },
   props: ["sprintCode"],
   data() {
     return {
-      categoriesTeamWork: [],
       categoriesSetas: [],
       seriesTeamWork: [],
       seriesSetas: [],
       seriesPiechart: [],
       totalHours: null,
       totalHoursSetas: null,
+      reducer: REDUCER,
+      setasPercent: null,
     };
   },
   mounted() {},
   computed: {
     barchartTitle() {
-      return `Tech Team - ${this.totalHours}h`;
+      return `Tech Team - <b>${this.totalHours}h</b>`;
     },
     barchartTitleSetas() {
-      return `Setas - ${this.totalHoursSetas}h`;
+      return `Setas - <b>${this.totalHoursSetas}h</b>`;
+    },
+    piechartTitleSetas() {
+      return `Setas Impact - <b>${this.setasPercent}%</b>`;
     },
   },
   watch: {
@@ -55,24 +61,30 @@ export default {
   methods: {
     async loadDataTeamWork() {
       const data = await csv_loader(this.sprintCode + "/team_work.csv");
-      console.log("TeamChart COMPONENT loaded data", data);
-
+      this.calculateTeamWork(data);
+    },
+    async loadDataTeamSetas() {
+      const data = await csv_loader(this.sprintCode + "/team_setas.csv");
+      this.calculateTeamSetas(data);
+    },
+    calculateTeamWork(data) {
       let dates = [];
       let timeSpentHours = [];
+
       for (const { date, time_spent_hours } of data) {
         dates.push(date);
         timeSpentHours.push(parseFloat(time_spent_hours));
       }
-      this.categoriesTeamWork = [...dates];
-      this.seriesTeamWork = [{ name: "Worked Hours", data: timeSpentHours }];
-      this.totalHours = timeSpentHours.reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      );
+
+      this.seriesTeamWork = [
+        { name: "Worked Hours", data: timeSpentHours, color: "#2373a4" },
+      ];
+      this.totalHours = timeSpentHours.reduce(this.reducer);
       this.totalHours = Math.round(this.totalHours * 10) / 10;
+
+      this.$emit("sprint-dates-calculated", dates);
     },
-    async loadDataTeamSetas() {
-      const data = await csv_loader(this.sprintCode + "/team_setas.csv");
-      console.log("setas", data);
+    calculateTeamSetas(data) {
       let authors = [];
       let timeSpentHoursSetas = [];
 
@@ -81,17 +93,19 @@ export default {
         timeSpentHoursSetas.push(parseFloat(time_spent_hours));
       }
       this.categoriesSetas = [...authors];
-      this.seriesSetas = [{ name: "Setas Hours", data: timeSpentHoursSetas }];
-      this.totalHoursSetas = timeSpentHoursSetas.reduce(
-        (accumulator, currentValue) => accumulator + currentValue
-      );
+      this.seriesSetas = [
+        { name: "Setas Hours", data: timeSpentHoursSetas, color: "#2373a4" },
+      ];
+      this.totalHoursSetas = timeSpentHoursSetas.reduce(this.reducer);
+      this.totalHoursSetas = Math.round(this.totalHoursSetas * 10) / 10;
 
-      this.loadSetasImpact();
+      this.calculateSetasImpact();
     },
-    loadSetasImpact() {
-      let setasPercent = (this.totalHoursSetas / this.totalHours) * 100;
-      setasPercent = Math.round(setasPercent * 10) / 10;
-      const noSetasPercent = 100 - setasPercent;
+    calculateSetasImpact() {
+      this.setasPercent = (this.totalHoursSetas / this.totalHours) * 100;
+      this.setasPercent = Math.round(this.setasPercent * 10) / 10;
+      const noSetasPercent = 100 - this.setasPercent;
+
       this.seriesPiechart = [
         {
           name: "%",
@@ -101,10 +115,12 @@ export default {
               y: noSetasPercent,
               sliced: true,
               selected: true,
+              color: "#2373a4",
             },
             {
               name: "setas",
-              y: setasPercent,
+              y: this.setasPercent,
+              color: "#a7052b",
             },
           ],
         },

@@ -43,11 +43,23 @@ export default {
             name: currentAuthor,
             totalHours: 0,
             series: [
-              { name: "worked hours", data: [] },
+              {
+                name: "worked hours",
+                data: [],
+                color: "#5a8a66",
+              },
               {
                 name: "reference",
                 data: this.getWorkReference(currentAuthor),
-                opacity: 0.6,
+                opacity: 0.8,
+                color: "#cdd2e1",
+                dataLabels: {
+                  enabled: true,
+                  color: "#8b91a0",
+                  backgroundColor: "transparent",
+                  borderWidth: 0,
+                  y: -6,
+                },
               },
             ],
           };
@@ -60,14 +72,20 @@ export default {
         this.membersData[index].totalHours += hours;
       });
 
-      console.log(this.membersData);
+      this.membersData.sort((a, b) => (a.name > b.name ? 1 : -1));
+
+      console.log("this.membersData", this.membersData);
     },
     async loadData() {
       const data = await csv_loader(this.sprintCode + "/members_work.csv");
       this.fillMembersData(data);
     },
     getMemberTitle(name, hours) {
-      return `${name} - ${hours}h`;
+      const hoursRounded = Math.round(hours * 10) / 10;
+      if (name === "Marc R") {
+        return `${name} -<b>${hoursRounded}h</b> of 40h`;
+      }
+      return `${name} - <b>${hoursRounded}h</b> of 50h`;
     },
     getWorkReference(author) {
       if (author === "Marc R") {

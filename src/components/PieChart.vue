@@ -17,6 +17,7 @@ export default {
       return {
         chart: {
           type: "pie",
+          spacing: [40, 40, 40, 40],
         },
         title: {
           text: this.title,
@@ -24,6 +25,7 @@ export default {
         series: this.series,
         plotOptions: {
           pie: {
+            size: "70%",
             allowPointSelect: true,
             cursor: "pointer",
             dataLabels: {

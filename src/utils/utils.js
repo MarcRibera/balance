@@ -8,3 +8,13 @@ export function dateFormatter(dateStr) {
     day: "2-digit",
   }).format(date);
 }
+
+export function sprintDateFormatter(dateStr) {
+  console.log(typeof dateStr);
+  const date = new Date(dateStr);
+
+  return new Intl.DateTimeFormat("en-GB", {
+    month: "long",
+    day: "2-digit",
+  }).format(date);
+}

@@ -17,11 +17,19 @@ export default {
       options: [
         {
           value: "q302",
-          label: "Q302",
+          label: "Sprint Q302",
         },
         {
           value: "q301",
-          label: "Q301",
+          label: "Sprint Q301",
+        },
+        {
+          value: "q204",
+          label: "Sprint Q204",
+        },
+        {
+          value: "q203",
+          label: "Sprint Q203",
         },
       ],
       value: "",
