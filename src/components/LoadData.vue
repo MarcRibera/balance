@@ -9,19 +9,40 @@
 // this component is only for test porpouse
 // the data showed is getted into teamchart component
 
-import * as d3 from "d3";
+import * as d3 from 'd3'
 
 export default {
   data() {
-    return {};
+    return {
+      dataCleaned: [],
+    }
   },
   methods: {
     async upload() {
-      const data = await d3.csv("/team_work_comma.csv");
-      this.getSeriesTeamWork(data);
+      const data = await d3.csv('balances/data.csv')
+      this.dataCleaned = data.map((row) => {
+        return {
+          date: row.date,
+          category: row.category,
+          amount: row.amount,
+          description: row.description,
+        }
+      })
+      console.log('dataCleaned', this.dataCleaned)
+      this.splitPerMonth()
+
+      // for (var i = 0; i < data.length; i++) {
+      //   console.log(data[i])
+      // }
+    },
+    splitPerMonth() {
+      //const months = []
+      this.dataCleaned.forEach((entry) => {
+        console.log('', entry)
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="css" scoped></style>

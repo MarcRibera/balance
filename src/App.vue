@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <el-container>
-      <!-- <el-aside width="200px">
+      <el-aside width="200px">
         <LoadData />
-      </el-aside> -->
+      </el-aside>
       <el-container>
         <el-header class="app-header">
           <Selector @select="setCurrentSprint" />
@@ -25,36 +25,38 @@
 </template>
 
 <script>
-import MembersBarchart from "./components/MembersBarchart.vue";
-import TeamCharts from "./components/TeamCharts.vue";
-import Selector from "./components/Selector.vue";
-import { sprintDateFormatter } from "./utils/utils.js";
+import MembersBarchart from './components/MembersBarchart.vue'
+import TeamCharts from './components/TeamCharts.vue'
+import Selector from './components/Selector.vue'
+import { sprintDateFormatter } from './utils/utils.js'
+import LoadData from './components/LoadData.vue'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     MembersBarchart,
     TeamCharts,
     Selector,
+    LoadData,
   },
   data() {
     return {
       dates: [],
-      currentSprint: "",
+      currentSprint: '',
       since: null,
       until: null,
-    };
+    }
   },
   methods: {
     setCurrentSprint(value) {
-      this.currentSprint = value;
+      this.currentSprint = value
     },
     getSprintDates(dates) {
-      this.since = sprintDateFormatter(dates[0]);
-      this.until = sprintDateFormatter(dates[dates.length - 1]);
+      this.since = sprintDateFormatter(dates[0])
+      this.until = sprintDateFormatter(dates[dates.length - 1])
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
