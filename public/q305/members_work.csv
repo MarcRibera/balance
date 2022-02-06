@@ -1,0 +1,127 @@
+date,author,time_spent_sec,time_spent_hours
+2021-09-01,Alex Bonell,8220,2.3
+2021-09-02,Alex Bonell,19500,5.4
+2021-09-03,Alex Bonell,7200,2.0
+2021-09-04,Alex Bonell,0,0.0
+2021-09-05,Alex Bonell,0,0.0
+2021-09-06,Alex Bonell,14880,4.1
+2021-09-07,Alex Bonell,10800,3.0
+2021-09-08,Alex Bonell,3600,1.0
+2021-09-09,Alex Bonell,22440,6.2
+2021-09-10,Alex Bonell,13920,3.9
+2021-09-11,Alex Bonell,0,0.0
+2021-09-12,Alex Bonell,0,0.0
+2021-09-13,Alex Bonell,0,0.0
+2021-09-14,Alex Bonell,0,0.0
+2021-09-01,Anna Ruiz Ferrer,10800,3.0
+2021-09-02,Anna Ruiz Ferrer,0,0.0
+2021-09-03,Anna Ruiz Ferrer,32400,9.0
+2021-09-04,Anna Ruiz Ferrer,0,0.0
+2021-09-05,Anna Ruiz Ferrer,0,0.0
+2021-09-06,Anna Ruiz Ferrer,25200,7.0
+2021-09-07,Anna Ruiz Ferrer,25200,7.0
+2021-09-08,Anna Ruiz Ferrer,25200,7.0
+2021-09-09,Anna Ruiz Ferrer,0,0.0
+2021-09-10,Anna Ruiz Ferrer,27000,7.5
+2021-09-11,Anna Ruiz Ferrer,0,0.0
+2021-09-12,Anna Ruiz Ferrer,0,0.0
+2021-09-13,Anna Ruiz Ferrer,0,0.0
+2021-09-14,Anna Ruiz Ferrer,0,0.0
+2021-09-01,Meryem Akrout,1800,0.5
+2021-09-02,Meryem Akrout,3600,1.0
+2021-09-03,Meryem Akrout,57600,16.0
+2021-09-04,Meryem Akrout,0,0.0
+2021-09-05,Meryem Akrout,0,0.0
+2021-09-06,Meryem Akrout,9000,2.5
+2021-09-07,Meryem Akrout,3600,1.0
+2021-09-08,Meryem Akrout,0,0.0
+2021-09-09,Meryem Akrout,0,0.0
+2021-09-10,Meryem Akrout,0,0.0
+2021-09-11,Meryem Akrout,0,0.0
+2021-09-12,Meryem Akrout,0,0.0
+2021-09-13,Meryem Akrout,0,0.0
+2021-09-14,Meryem Akrout,39600,11.0
+2021-09-01,agombert,14400,4.0
+2021-09-02,agombert,23400,6.5
+2021-09-03,agombert,25200,7.0
+2021-09-04,agombert,0,0.0
+2021-09-05,agombert,0,0.0
+2021-09-06,agombert,6300,1.8
+2021-09-07,agombert,14400,4.0
+2021-09-08,agombert,24300,6.8
+2021-09-09,agombert,13500,3.8
+2021-09-10,agombert,18000,5.0
+2021-09-11,agombert,0,0.0
+2021-09-12,agombert,0,0.0
+2021-09-13,agombert,1800,0.5
+2021-09-14,agombert,3600,1.0
+2021-09-01,jdalmau,10020,2.8
+2021-09-02,jdalmau,19260,5.3
+2021-09-03,jdalmau,20100,5.6
+2021-09-04,jdalmau,0,0.0
+2021-09-05,jdalmau,0,0.0
+2021-09-06,jdalmau,18660,5.2
+2021-09-07,jdalmau,11220,3.1
+2021-09-08,jdalmau,14400,4.0
+2021-09-09,jdalmau,13800,3.8
+2021-09-10,jdalmau,8160,2.3
+2021-09-11,jdalmau,0,0.0
+2021-09-12,jdalmau,0,0.0
+2021-09-13,jdalmau,0,0.0
+2021-09-14,jdalmau,0,0.0
+2021-09-01,Marc G.,0,0.0
+2021-09-02,Marc G.,3360,0.9
+2021-09-03,Marc G.,1800,0.5
+2021-09-04,Marc G.,0,0.0
+2021-09-05,Marc G.,0,0.0
+2021-09-06,Marc G.,1980,0.6
+2021-09-07,Marc G.,0,0.0
+2021-09-08,Marc G.,0,0.0
+2021-09-09,Marc G.,0,0.0
+2021-09-10,Marc G.,0,0.0
+2021-09-11,Marc G.,0,0.0
+2021-09-12,Marc G.,0,0.0
+2021-09-13,Marc G.,0,0.0
+2021-09-14,Marc G.,0,0.0
+2021-09-01,Mehdi Mdaghri,0,0.0
+2021-09-02,Mehdi Mdaghri,5400,1.5
+2021-09-03,Mehdi Mdaghri,18000,5.0
+2021-09-04,Mehdi Mdaghri,0,0.0
+2021-09-05,Mehdi Mdaghri,0,0.0
+2021-09-06,Mehdi Mdaghri,0,0.0
+2021-09-07,Mehdi Mdaghri,0,0.0
+2021-09-08,Mehdi Mdaghri,3600,1.0
+2021-09-09,Mehdi Mdaghri,18000,5.0
+2021-09-10,Mehdi Mdaghri,21600,6.0
+2021-09-11,Mehdi Mdaghri,0,0.0
+2021-09-12,Mehdi Mdaghri,0,0.0
+2021-09-13,Mehdi Mdaghri,7200,2.0
+2021-09-14,Mehdi Mdaghri,0,0.0
+2021-09-01,dvinegla,0,0.0
+2021-09-02,dvinegla,22080,6.1
+2021-09-03,dvinegla,28320,7.9
+2021-09-04,dvinegla,0,0.0
+2021-09-05,dvinegla,0,0.0
+2021-09-06,dvinegla,17100,4.8
+2021-09-07,dvinegla,0,0.0
+2021-09-08,dvinegla,23220,6.5
+2021-09-09,dvinegla,11460,3.2
+2021-09-10,dvinegla,38160,10.6
+2021-09-11,dvinegla,0,0.0
+2021-09-12,dvinegla,0,0.0
+2021-09-13,dvinegla,32400,9.0
+2021-09-14,dvinegla,32400,9.0
+2021-09-01,jcatasus,0,0.0
+2021-09-02,jcatasus,0,0.0
+2021-09-03,jcatasus,0,0.0
+2021-09-04,jcatasus,0,0.0
+2021-09-05,jcatasus,0,0.0
+2021-09-06,jcatasus,36000,10.0
+2021-09-07,jcatasus,16800,4.7
+2021-09-08,jcatasus,3600,1.0
+2021-09-09,jcatasus,4500,1.2
+2021-09-10,jcatasus,11700,3.2
+2021-09-11,jcatasus,0,0.0
+2021-09-12,jcatasus,0,0.0
+2021-09-13,jcatasus,0,0.0
+2021-09-14,jcatasus,0,0.0

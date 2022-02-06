@@ -24,6 +24,7 @@ export default {
   mounted() {
     this.sprintCodes = getSprintsCodes();
     this.createSelectorOptions();
+    console.log("this.sprintCodes", this.sprintCodes);
   },
   methods: {
     emitChange(value) {
@@ -43,6 +44,7 @@ export default {
       // set inital value
       this.value = this.sprintCodes[0];
       this.emitChange(this.value);
+      console.log("emit crurrent sprint", this.value);
     },
   },
 };
