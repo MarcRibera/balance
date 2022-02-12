@@ -2,21 +2,22 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <LoadData />
+        <LoadData @get-data="getData" />
       </el-aside>
       <el-container>
         <el-header class="app-header">
-          <Selector @select="setCurrentSprint" />
           <p>
             From <b>{{ since }}</b> to <b>{{ until }}</b>
           </p>
         </el-header>
         <el-main>
-          <TeamCharts
+          <Table :data="dataStructured"></Table>
+
+          <!-- <TeamCharts
             :sprintCode="currentSprint"
             @sprint-dates-calculated="getSprintDates"
           />
-          <MembersBarchart :sprintCode="currentSprint" />
+          <MembersBarchart :sprintCode="currentSprint" /> -->
         </el-main>
         <el-footer>Footer</el-footer>
       </el-container>
@@ -25,19 +26,17 @@
 </template>
 
 <script>
-import MembersBarchart from './components/MembersBarchart.vue'
-import TeamCharts from './components/TeamCharts.vue'
-import Selector from './components/Selector.vue'
+// import MembersBarchart from './components/MembersBarchart.vue'
+// import TeamCharts from './components/TeamCharts.vue'
 import { sprintDateFormatter } from './utils/utils.js'
 import LoadData from './components/LoadData.vue'
+import Table from './components/Table.vue'
 
 export default {
   name: 'App',
   components: {
-    MembersBarchart,
-    TeamCharts,
-    Selector,
     LoadData,
+    Table,
   },
   data() {
     return {
@@ -45,15 +44,21 @@ export default {
       currentSprint: '',
       since: null,
       until: null,
+      dataStructured: [],
     }
   },
   methods: {
     setCurrentSprint(value) {
+      console.log('value', value)
       this.currentSprint = value
     },
     getSprintDates(dates) {
       this.since = sprintDateFormatter(dates[0])
       this.until = sprintDateFormatter(dates[dates.length - 1])
+    },
+    getData(data) {
+      console.log('get dat', data)
+      this.dataStructured = data
     },
   },
 }

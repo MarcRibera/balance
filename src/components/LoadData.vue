@@ -9,7 +9,7 @@
 // this component is only for test porpouse
 // the data showed is getted into teamchart component
 
-import * as d3 from 'd3'
+import { csv as loadCsv } from 'd3'
 const MONTHS = [
   'January',
   'February',
@@ -78,7 +78,7 @@ export default {
       console.log('this.dataStructured', this.dataStructured)
     },
     async loadData() {
-      const data = await d3.csv('balances/data.csv')
+      const data = await loadCsv('balances/data.csv')
       this.dataCleaned = data.map((row) => {
         return {
           date: row.date,
@@ -87,8 +87,6 @@ export default {
           description: row.description,
         }
       })
-      console.log('dataCleaned', this.dataCleaned)
-
       this.structureData()
     },
     structureData() {
@@ -128,15 +126,16 @@ export default {
       this.cleanEmptyMonths()
     },
     cleanEmptyMonths() {
-      for (const year of YEARS) {
-        for (const [i, month] of this.dataStructured[year].entries()) {
-          if (month.entries.length === 0) {
-            console.log(`${month.month} ${year} index ${i}`)
-            //this.dataStructured[year].splice(i, 1)
-          }
-        }
-      }
+      // for (const year of YEARS) {
+      //   for (const [i, month] of this.dataStructured[year].entries()) {
+      //     if (month.entries.length === 0) {
+      //       console.log(`${month.month} ${year} index ${i}`)
+      //       this.dataStructured[year].splice(i, 1)
+      //     }
+      //   }
+      // }
       console.log('this.dataStructured', this.dataStructured)
+      this.$emit('get-data', this.dataStructured)
     },
   },
 }
