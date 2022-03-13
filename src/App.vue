@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <LoadData @get-data="getData" />
+        <LoadData @get-data="loadData" />
       </el-aside>
       <el-container>
         <el-header class="app-header">
@@ -12,7 +12,7 @@
         </el-header>
         <el-main>
           <Table :data="dataStructured"></Table>
-
+          <MonthBarchart></MonthBarchart>
           <!-- <TeamCharts
             :sprintCode="currentSprint"
             @sprint-dates-calculated="getSprintDates"
@@ -28,15 +28,17 @@
 <script>
 // import MembersBarchart from './components/MembersBarchart.vue'
 // import TeamCharts from './components/TeamCharts.vue'
-import { sprintDateFormatter } from './utils/utils.js'
+// import { sprintDateFormatter } from './utils/utils.js'
 import LoadData from './components/LoadData.vue'
 import Table from './components/Table.vue'
+import MonthBarchart from './components/MonthBarchart.vue'
 
 export default {
   name: 'App',
   components: {
     LoadData,
     Table,
+    MonthBarchart,
   },
   data() {
     return {
@@ -48,18 +50,18 @@ export default {
     }
   },
   methods: {
-    setCurrentSprint(value) {
-      console.log('value', value)
-      this.currentSprint = value
-    },
-    getSprintDates(dates) {
-      this.since = sprintDateFormatter(dates[0])
-      this.until = sprintDateFormatter(dates[dates.length - 1])
-    },
-    getData(data) {
+    loadData(data) {
       console.log('get dat', data)
       this.dataStructured = data
     },
+    // setCurrentSprint(value) {
+    //   console.log('value', value)
+    //   this.currentSprint = value
+    // },
+    // getSprintDates(dates) {
+    //   this.since = sprintDateFormatter(dates[0])
+    //   this.until = sprintDateFormatter(dates[dates.length - 1])
+    // },
   },
 }
 </script>

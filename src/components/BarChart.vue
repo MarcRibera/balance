@@ -6,7 +6,7 @@
 
 <script>
 import { Chart } from 'highcharts-vue'
-//import { dateFormatter } from "@/utils/utils";
+//import { dateFormatter } from '@/utils/utils'
 
 export default {
   components: {

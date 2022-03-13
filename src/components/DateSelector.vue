@@ -34,7 +34,6 @@ export default {
     this.elements = this.isMonthView ? MONTHS : YEARS
     this.createSelectorOptions()
     this.setInitialDate()
-    console.log('this.elements', this.elements)
   },
   methods: {
     emitChange(value) {

@@ -6,10 +6,9 @@
 </template>
 
 <script>
-// this component is only for test porpouse
-// the data showed is getted into teamchart component
-
 import { csv as loadCsv } from 'd3'
+import { round2decimals } from '@/utils/utils'
+
 const MONTHS = [
   'January',
   'February',
@@ -47,6 +46,8 @@ export default {
     return {
       dataCleaned: [],
       dataStructured: [],
+      dataStructuredCleaned: [],
+      inOutYears: [],
     }
   },
   created() {
@@ -74,8 +75,6 @@ export default {
           this.dataStructured[year].push(monthData)
         }
       }
-
-      console.log('this.dataStructured', this.dataStructured)
     },
     async loadData() {
       const data = await loadCsv('balances/data.csv')
@@ -123,19 +122,29 @@ export default {
         category.amount += currentAmount
       }
 
+      this.$emit('get-data', this.dataStructured)
       this.cleanEmptyMonths()
     },
     cleanEmptyMonths() {
-      // for (const year of YEARS) {
-      //   for (const [i, month] of this.dataStructured[year].entries()) {
-      //     if (month.entries.length === 0) {
-      //       console.log(`${month.month} ${year} index ${i}`)
-      //       this.dataStructured[year].splice(i, 1)
-      //     }
-      //   }
-      // }
-      console.log('this.dataStructured', this.dataStructured)
-      this.$emit('get-data', this.dataStructured)
+      // not used currently
+      if (this.dataStructured.length) {
+        for (const year in this.dataStructured) {
+          this.dataStructuredCleaned[year] = []
+          this.inOutYears[year] = []
+          for (const month of this.dataStructured[year]) {
+            if (month.entries.length) {
+              this.dataStructuredCleaned[year].push(month)
+
+              this.inOutYears[year].push({
+                name: month.month,
+                totalIn: round2decimals(month.totalIn),
+                totalOut: round2decimals(month.totalOut),
+              })
+            }
+          }
+        }
+      }
+      console.log('this.inOutYears', this.inOutYears)
     },
   },
 }
