@@ -1,5 +1,5 @@
 <template>
-  <el-select v-model="value" placeholder="Select" @change="emitChange">
+  <el-select v-model="value" placeholder="Select" @change="emitNewValue">
     <el-option
       v-for="item in options"
       :key="item.value"
@@ -11,6 +11,10 @@
 </template>
 
 <script>
+import { getMonthNames } from '@/utils/utils'
+
+// TODO this component should be agnostic, so  this const
+// should be removed, and get this data as a prop
 const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 const YEARS = [2021, 2022]
 
@@ -23,6 +27,7 @@ export default {
       options: [],
       value: '',
       elements: [],
+      monthNames: getMonthNames(),
     }
   },
   computed: {
@@ -36,7 +41,7 @@ export default {
     this.setInitialDate()
   },
   methods: {
-    emitChange(value) {
+    emitNewValue(value) {
       this.$emit('select', value)
     },
     createSelectorOptions() {
@@ -45,7 +50,7 @@ export default {
       this.options = this.elements.map((item) => {
         return {
           value: item,
-          label: this.isMonthView ? `Month ${item + 1}` : `Year ${item}`,
+          label: this.isMonthView ? `${this.monthNames[item]}` : `${item}`,
         }
       })
     },
@@ -56,7 +61,7 @@ export default {
         ? currentDate.getMonth()
         : currentDate.getFullYear()
 
-      this.emitChange(this.value)
+      this.emitNewValue(this.value)
     },
   },
 }

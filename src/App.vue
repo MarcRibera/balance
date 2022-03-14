@@ -9,10 +9,18 @@
           <p>
             From <b>{{ since }}</b> to <b>{{ until }}</b>
           </p>
+
+          <DateSelector :type="'year'" @select="getYear" />
+          <DateSelector :type="'month'" @select="getMonth" />
         </el-header>
         <el-main>
-          <Table :data="dataStructured"></Table>
           <MonthBarchart :data="inoutYearData"></MonthBarchart>
+          <Table
+            :data="dataStructured"
+            :currentYear="currentYear"
+            :currentMonth="currentMonth"
+          ></Table>
+
           <!-- <TeamCharts
             :sprintCode="currentSprint"
             @sprint-dates-calculated="getSprintDates"
@@ -32,6 +40,7 @@
 import LoadData from './components/LoadData.vue'
 import Table from './components/Table.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
+import DateSelector from '@/components/DateSelector.vue'
 
 export default {
   name: 'App',
@@ -39,17 +48,19 @@ export default {
     LoadData,
     Table,
     MonthBarchart,
+    DateSelector,
   },
   computed: {
     inoutYearData() {
-      const year = '2021'
-      return this.inoutSeries[year]
+      return this.inoutSeries[this.currentYear]
     },
   },
   data() {
     return {
       dates: [],
       currentSprint: '',
+      currentYear: null,
+      currentMonth: null,
       since: null,
       until: null,
       dataStructured: [],
@@ -62,9 +73,14 @@ export default {
       this.dataStructured = data
     },
     getInoutSeries(data) {
-      //this.inoutSeries = data
       this.inoutSeries = data
       console.log('getInoutSeries', data)
+    },
+    getYear(year) {
+      this.currentYear = year
+    },
+    getMonth(month) {
+      this.currentMonth = month
     },
     // setCurrentSprint(value) {
     //   console.log('value', value)
