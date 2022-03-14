@@ -2,7 +2,7 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <LoadData @get-data="loadData" />
+        <LoadData @get-data="loadData" @get-inout-series="getInoutSeries" />
       </el-aside>
       <el-container>
         <el-header class="app-header">
@@ -12,7 +12,7 @@
         </el-header>
         <el-main>
           <Table :data="dataStructured"></Table>
-          <MonthBarchart></MonthBarchart>
+          <MonthBarchart :data="inoutYearData"></MonthBarchart>
           <!-- <TeamCharts
             :sprintCode="currentSprint"
             @sprint-dates-calculated="getSprintDates"
@@ -40,6 +40,12 @@ export default {
     Table,
     MonthBarchart,
   },
+  computed: {
+    inoutYearData() {
+      const year = '2021'
+      return this.inoutSeries[year]
+    },
+  },
   data() {
     return {
       dates: [],
@@ -47,12 +53,18 @@ export default {
       since: null,
       until: null,
       dataStructured: [],
+      inoutSeries: [],
     }
   },
   methods: {
     loadData(data) {
       console.log('get dat', data)
       this.dataStructured = data
+    },
+    getInoutSeries(data) {
+      //this.inoutSeries = data
+      this.inoutSeries = data
+      console.log('getInoutSeries', data)
     },
     // setCurrentSprint(value) {
     //   console.log('value', value)

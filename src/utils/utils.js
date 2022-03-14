@@ -20,3 +20,20 @@ export function sprintDateFormatter(dateStr) {
 export function round2decimals(num) {
   return (Math.round(num * 100) / 100).toFixed(2)
 }
+
+export function getMonthNames() {
+  return [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
+}

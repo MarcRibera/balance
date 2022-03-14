@@ -44,10 +44,9 @@ const CATEGORIES = [
 export default {
   data() {
     return {
-      dataCleaned: [],
+      dataLoadedCleaned: [],
       dataStructured: [],
-      dataStructuredCleaned: [],
-      inOutYears: [],
+      inoutSeries: [],
     }
   },
   created() {
@@ -78,7 +77,7 @@ export default {
     },
     async loadData() {
       const data = await loadCsv('balances/data.csv')
-      this.dataCleaned = data.map((row) => {
+      this.dataLoadedCleaned = data.map((row) => {
         return {
           date: row.date,
           category: row.category,
@@ -90,7 +89,7 @@ export default {
     },
     structureData() {
       //const months = []
-      for (const entry of this.dataCleaned) {
+      for (const entry of this.dataLoadedCleaned) {
         const currentYear = entry.date.slice(6, 10)
         const currentMonth = entry.date.slice(3, 5)
         const currentMonthNumber = currentMonth * 1
@@ -123,29 +122,43 @@ export default {
       }
 
       this.$emit('get-data', this.dataStructured)
-      this.cleanEmptyMonths()
+      this.structureInoutSeries()
+      // this.cleanEmptyMonths()
     },
-    cleanEmptyMonths() {
-      // not used currently
-      if (this.dataStructured.length) {
-        for (const year in this.dataStructured) {
-          this.dataStructuredCleaned[year] = []
-          this.inOutYears[year] = []
-          for (const month of this.dataStructured[year]) {
-            if (month.entries.length) {
-              this.dataStructuredCleaned[year].push(month)
+    structureInoutSeries() {
+      for (const year in this.dataStructured) {
+        this.inoutSeries[year] = [
+          {
+            name: 'input',
+            data: [],
+          },
+          {
+            name: 'output',
+            data: [],
+          },
+        ]
 
-              this.inOutYears[year].push({
-                name: month.month,
-                totalIn: round2decimals(month.totalIn),
-                totalOut: round2decimals(month.totalOut),
-              })
-            }
-          }
+        for (const month of this.dataStructured[year]) {
+          const monthTotalIn = round2decimals(month.totalIn) * 1
+          const monthTotalOut = round2decimals(month.totalOut) * -1
+          this.inoutSeries[year][0].data.push(monthTotalIn)
+          this.inoutSeries[year][1].data.push(monthTotalOut)
         }
       }
-      console.log('this.inOutYears', this.inOutYears)
+      this.$emit('get-inout-series', this.inoutSeries)
     },
+    // cleanEmptyMonths() {
+    //   if (this.dataStructured.length) {
+    //     for (const year in this.dataStructured) {
+    //       this.dataStructuredCleaned[year] = []
+    //       for (const month of this.dataStructured[year]) {
+    //         if (month.entries.length) {
+    //           this.dataStructuredCleaned[year].push(month)
+    //         }
+    //       }
+    //     }
+    //   }
+    // },
   },
 }
 </script>
