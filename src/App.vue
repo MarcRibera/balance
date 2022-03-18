@@ -14,6 +14,7 @@
           <DateSelector :type="'month'" @select="getMonth" />
         </el-header>
         <el-main>
+          <CategoriesMonthBarChart></CategoriesMonthBarChart>
           <MonthBarchart :data="inoutYearData"></MonthBarchart>
           <Table
             :data="dataStructured"
@@ -41,6 +42,7 @@ import LoadData from './components/LoadData.vue'
 import Table from './components/Table.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
 import DateSelector from '@/components/DateSelector.vue'
+import CategoriesMonthBarChart from '@/components/CategoriesMonthBarChart.vue'
 
 export default {
   name: 'App',
@@ -49,7 +51,9 @@ export default {
     Table,
     MonthBarchart,
     DateSelector,
+    CategoriesMonthBarChart,
   },
+
   computed: {
     inoutYearData() {
       return this.inoutSeries[this.currentYear]
