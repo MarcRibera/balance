@@ -8,6 +8,7 @@
 <script>
 import { csv as loadCsv } from 'd3'
 import { round2decimals } from '@/utils/utils'
+import { getCategories } from '@/utils/utils.js'
 
 const MONTHS = [
   'January',
@@ -24,22 +25,6 @@ const MONTHS = [
   'December',
 ]
 const YEARS = [2021, 2022]
-const CATEGORIES = [
-  'Taxi',
-  'House',
-  'Salary',
-  'Food',
-  'Entertainment',
-  'Eating out',
-  'Car',
-  'Cosmetic',
-  'Transport',
-  'Health',
-  'Bills',
-  'Sports',
-  'Clothes',
-  'Gifts',
-]
 
 export default {
   data() {
@@ -47,6 +32,7 @@ export default {
       dataLoadedCleaned: [],
       dataStructured: [],
       inoutSeries: [],
+      categories: getCategories(),
     }
   },
   created() {
@@ -64,7 +50,7 @@ export default {
             totalIn: 0,
             totalOut: 0,
             balance: 0,
-            categories: CATEGORIES.map((cat) => {
+            categories: this.categories.map((cat) => {
               return {
                 name: cat,
                 amount: 0,

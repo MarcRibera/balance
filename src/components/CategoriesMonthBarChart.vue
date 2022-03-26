@@ -1,132 +1,149 @@
 <template>
-  <highcharts :options="options"></highcharts>
+  <div>
+    <highcharts v-if="!loadingData" :options="options"></highcharts>
+
+    <el-col :span="6" v-for="month in yearData" :key="month.name">
+      <highcharts
+        v-if="!loadingData"
+        :options="getCurrentOptions(month)"
+      ></highcharts>
+    </el-col>
+  </div>
 </template>
 
 <script>
 import { Chart } from 'highcharts-vue'
+import {
+  getCategories,
+  getYears,
+  getMonthNames,
+  getCategoriesColors,
+} from '@/utils/utils.js'
+
 export default {
   components: {
     highcharts: Chart,
   },
-  props: ['categories', 'series', 'title'],
+  props: {
+    data: {
+      type: Array,
+      default: () => [],
+    },
+    currentYear: {
+      type: Number,
+      default: 2022,
+    },
+  },
+  watch: {
+    data() {
+      this.dataReceived = this.data
+      this.structureData()
+    },
+  },
   computed: {
+    currentSeries() {
+      console.log(
+        'categories currentSeries',
+        this.dataStructured[this.currentYear]
+      )
+      return this.dataStructured[this.currentYear]
+    },
+    yearData() {
+      const series = this.dataReceived[this.currentYear]?.map((month) => {
+        return {
+          name: month.month,
+          categories: month.categories.map((cat) => {
+            return {
+              name: cat.name,
+              data: [cat.amount * -1],
+            }
+          }),
+        }
+      })
+      console.log('yearData series', series)
+      return series
+    },
     options() {
+      return {
+        title: {
+          text: this.title,
+        },
+        xAxis: {
+          categories: getMonthNames(),
+          //crosshair: true,
+        },
+        series: this.currentSeries,
+        yAxis: {
+          min: 0,
+          softMax: 10,
+        },
+        colors: getCategoriesColors(),
+        legend: {
+          layout: 'vertical',
+          align: 'left',
+          verticalAlign: 'middle',
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+            },
+          },
+        },
+      }
+    },
+  },
+  methods: {
+    createDataStructure() {
+      const categories = getCategories()
+      const years = getYears()
+
+      for (const year of years) {
+        this.dataStructured[year] = categories.map((cat) => {
+          return {
+            name: cat,
+            data: [],
+          }
+        })
+      }
+    },
+    structureData() {
+      for (const yearKey in this.dataReceived) {
+        for (const monthData of this.dataReceived[yearKey]) {
+          for (const category of monthData.categories) {
+            const currentCat = this.dataStructured[yearKey].find(
+              (cat) => cat.name === category.name
+            )
+            currentCat.data.push(category.amount * -1)
+          }
+        }
+      }
+      this.loadingData = false
+    },
+    getCurrentOptions(data) {
+      console.log('data', data)
       return {
         chart: {
           type: 'column',
         },
         title: {
-          text: this.title,
+          text: data.name,
         },
         xAxis: {
-          categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-          ],
-          crosshair: true,
+          categories: getMonthNames(),
+          minPadding: 0,
+          maxPadding: 0,
         },
-        // series: this.series,
-        // xAxis: {
-        //   categories: this.categories,
-        //   labels: {
-        //     formatter: function () {
-        //       if (this.categoriesAreDates) {
-        //         return dateFormatter(this.value);
-        //       }
-        //       return this.value;
-        //     },
-        //   },
-        // },
-        // xAxis: {
-        //   categories: this.categories ? this.categories : this.getSprintDays(),
-        // },
-        series: [
-          {
-            name: 'Tokyo',
-            data: [
-              49.9,
-              71.5,
-              106.4,
-              129.2,
-              144.0,
-              176.0,
-              135.6,
-              148.5,
-              216.4,
-              194.1,
-              95.6,
-              54.4,
-            ],
-          },
-          {
-            name: 'New York',
-            data: [
-              83.6,
-              78.8,
-              98.5,
-              93.4,
-              106.0,
-              84.5,
-              105.0,
-              104.3,
-              91.2,
-              83.5,
-              106.6,
-              92.3,
-            ],
-          },
-          {
-            name: 'London',
-            data: [
-              48.9,
-              38.8,
-              39.3,
-              41.4,
-              47.0,
-              48.3,
-              59.0,
-              59.6,
-              52.4,
-              65.2,
-              59.3,
-              51.2,
-            ],
-          },
-          {
-            name: 'Berlin',
-            data: [
-              42.4,
-              33.2,
-              34.5,
-              39.7,
-              52.6,
-              75.5,
-              57.4,
-              60.4,
-              47.6,
-              39.1,
-              46.8,
-              51.1,
-            ],
-          },
-        ],
+        series: data.categories,
         yAxis: {
           min: 0,
-          softMax: 10,
+          max: 700,
         },
+        colors: getCategoriesColors(),
         plotOptions: {
           series: {
-            // borderColor: "#303030",
+            groupPadding: 0,
+            pointWidth: 20,
             dataLabels: {
               enabled: true,
             },
@@ -136,7 +153,15 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      dataStructured: [],
+      dataReceived: [],
+      loadingData: false,
+    }
+  },
+  created() {
+    this.createDataStructure()
+    this.loadingData = true
   },
 }
 </script>

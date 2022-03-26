@@ -14,7 +14,10 @@
           <DateSelector :type="'month'" @select="getMonth" />
         </el-header>
         <el-main>
-          <CategoriesMonthBarChart></CategoriesMonthBarChart>
+          <CategoriesMonthBarChart
+            :data="dataStructured"
+            :currentYear="currentYear"
+          ></CategoriesMonthBarChart>
           <MonthBarchart :data="inoutYearData"></MonthBarchart>
           <Table
             :data="dataStructured"
@@ -73,8 +76,9 @@ export default {
   },
   methods: {
     loadData(data) {
-      console.log('get dat', data)
+      console.log('APP, get data structured from data loader', data)
       this.dataStructured = data
+      console.log('this.dataStructured ', this.dataStructured)
     },
     getInoutSeries(data) {
       this.inoutSeries = data
