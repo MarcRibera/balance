@@ -211,6 +211,7 @@ date,account,category,amount,currency,converted amount,currency,description
 28/01/2022,Cash,Food,-62,EUR,-62,EUR,Mercadona
 02/02/2022,Cash,Eating out,-9.5,EUR,-9.5,EUR,Antonios
 02/02/2022,Cash,Eating out,-26,EUR,-26,EUR,La real
+03/02/2022,Cash,Bills,-37,EUR,-37,EUR,Pepephone
 04/02/2022,Cash,Salary,"1,500",EUR,"1,500",EUR,
 04/02/2022,Cash,House,-350,EUR,-350,EUR,Lloguer pis
 04/02/2022,Cash,Bills,-45,EUR,-45,EUR,Aigua
@@ -221,3 +222,261 @@ date,account,category,amount,currency,converted amount,currency,description
 05/02/2022,Cash,Eating out,-13,EUR,-13,EUR,Pollo
 05/02/2022,Cash,Eating out,-6.15,EUR,-6.15,EUR,Varis
 06/02/2022,Cash,Sports,-95,EUR,-95,EUR,Running shoes
+07/02/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+08/02/2022,Cash,Food,-12,EUR,-12,EUR,Mercadona
+08/02/2022,Cash,Food,-50,EUR,-50,EUR,Pote menjar
+09/02/2022,Cash,Transport,-150,EUR,-150,EUR,Bici amat
+10/02/2022,Cash,Food,-7.7,EUR,-7.7,EUR,Bonarea
+10/02/2022,Cash,Car,-242,EUR,-242,EUR,Seguro cotxe
+11/02/2022,Cash,Transport,-11,EUR,-11,EUR,Metro
+12/02/2022,Cash,Food,-44.16,EUR,-44.16,EUR,Mercadona
+12/02/2022,Cash,Entertainment,-2.5,EUR,-2.5,EUR,Cara
+13/02/2022,Cash,Eating out,-2.5,EUR,-2.5,EUR,Croisants
+13/02/2022,Cash,Eating out,-40,EUR,-40,EUR,Dinar la pau
+13/02/2022,Cash,Health,-90,EUR,-90,EUR,Cant
+14/02/2022,Cash,Health,-31.35,EUR,-31.35,EUR,Colagen + defenses
+15/02/2022,Cash,Transport,-37,EUR,-37,EUR,La clotabikes
+15/02/2022,Cash,Clothes,-56,EUR,-56,EUR,Decathlon
+17/02/2022,Cash,Food,-50,EUR,-50,EUR,Pote menjar
+18/02/2022,Cash,Eating out,-3,EUR,-3,EUR,Bar ivan
+19/02/2022,Cash,Gifts,-30,EUR,-30,EUR,Decathlon
+19/02/2022,Cash,Eating out,-6.5,EUR,-6.5,EUR,Dinar ofi
+19/02/2022,Cash,Food,-51,EUR,-51,EUR,Mercadona
+20/02/2022,Cash,Gifts,-5.15,EUR,-5.15,EUR,Croisants
+23/02/2022,Cash,Food,-23,EUR,-23,EUR,Mercadona
+23/02/2022,Cash,Eating out,-4,EUR,-4,EUR,Too good to go
+23/02/2022,Cash,Cosmetic,-5.35,EUR,-5.35,EUR,Pasta dents
+23/02/2022,Cash,House,-50,EUR,-50,EUR,Cadira
+23/02/2022,Cash,Savings,100,EUR,100,EUR,Aniversari
+23/02/2022,Cash,Bills,-51,EUR,-51,EUR,Gas
+25/02/2022,Cash,Eating out,-9,EUR,-9,EUR,Antonios
+25/02/2022,Cash,Eating out,-11.6,EUR,-11.6,EUR,El glop
+25/02/2022,Cash,Eating out,-12,EUR,-12,EUR,El glop
+26/02/2022,Cash,Food,-28,EUR,-28,EUR,Mercadona
+01/03/2022,Cash,Eating out,-7,EUR,-7,EUR,Dinar ofi
+01/03/2022,Cash,Entertainment,-22,EUR,-22,EUR,Npk
+02/03/2022,Cash,Eating out,-12.92,EUR,-12.92,EUR,Llorente
+02/03/2022,Cash,Salary,"1,800",EUR,"1,800",EUR,
+02/03/2022,Cash,Health,-60,EUR,-60,EUR,Cant
+02/03/2022,Cash,Entertainment,-6,EUR,-6,EUR,Estanc
+04/03/2022,Cash,Salary,308,EUR,308,EUR,Extra
+04/03/2022,Cash,House,-350,EUR,-350,EUR,Lloguer pis
+04/03/2022,Cash,Bills,-50,EUR,-50,EUR,Llum
+04/03/2022,Cash,Entertainment,-40,EUR,-40,EUR,Spotify
+04/03/2022,Cash,Health,-100,EUR,-100,EUR,Bamboo
+04/03/2022,Cash,Bills,-37,EUR,-37,EUR,Pepephone
+04/03/2022,Cash,Food,-48,EUR,-48,EUR,Mercadona
+06/03/2022,Cash,Eating out,-24,EUR,-24,EUR,Dinar massaiada
+07/03/2022,Cash,Eating out,-3.15,EUR,-3.15,EUR,Forn
+07/03/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+09/03/2022,Cash,Food,-45,EUR,-45,EUR,Mercadona
+10/03/2022,Cash,Entertainment,-27,EUR,-27,EUR,Teatre
+10/03/2022,Cash,Entertainment,-5.5,EUR,-5.5,EUR,Birres
+11/03/2022,Cash,Food,-48,EUR,-48,EUR,Mercadona
+11/03/2022,Cash,Eating out,-5.5,EUR,-5.5,EUR,Varis
+12/03/2022,Cash,Eating out,-9,EUR,-9,EUR,Pastisseria
+12/03/2022,Cash,Eating out,-40,EUR,-40,EUR,Pollos pau
+12/03/2022,Cash,Deposits,55,EUR,55,EUR,Varis
+13/03/2022,Cash,Food,-33,EUR,-33,EUR,Canelons taller
+13/03/2022,Cash,Eating out,-4,EUR,-4,EUR,Shwarma
+15/03/2022,Cash,Car,-40,EUR,-40,EUR,Itv
+17/03/2022,Cash,Food,-50,EUR,-50,EUR,Pote menjar
+17/03/2022,Cash,Entertainment,-11,EUR,-11,EUR,Birres curro
+18/03/2022,Cash,Food,-27,EUR,-27,EUR,Mercadona
+18/03/2022,Cash,Transport,-6,EUR,-6,EUR,Taxi
+18/03/2022,Cash,Entertainment,-40,EUR,-40,EUR,Sopar + espectacle Iguana
+19/03/2022,Cash,House,-15,EUR,-15,EUR,Varis casa
+19/03/2022,Cash,Food,-5.15,EUR,-5.15,EUR,Vermutillo
+22/03/2022,Cash,Eating out,-13.95,EUR,-13.95,EUR,Dinar ofi
+22/03/2022,Cash,Entertainment,-6.5,EUR,-6.5,EUR,Birres curro
+25/03/2022,Cash,Entertainment,-12,EUR,-12,EUR,Teatre
+25/03/2022,Cash,Health,-30,EUR,-30,EUR,Cant
+25/03/2022,Cash,Entertainment,-5,EUR,-5,EUR,Estanc
+25/03/2022,Cash,Food,-3,EUR,-3,EUR,Pizza
+26/03/2022,Cash,Entertainment,-5,EUR,-5,EUR,Birres pre teatre
+26/03/2022,Cash,Entertainment,-15,EUR,-15,EUR,Sopar + birres
+27/03/2022,Cash,Eating out,-30,EUR,-30,EUR,Dinar i sopar 
+29/03/2022,Cash,Food,-61,EUR,-61,EUR,Mercadona
+29/03/2022,Cash,Health,-10.6,EUR,-10.6,EUR,Herboriateria
+31/03/2022,Cash,Eating out,-15,EUR,-15,EUR,Kibuka
+31/03/2022,Cash,Entertainment,-15,EUR,-15,EUR,Hopiness
+01/04/2022,Cash,Eating out,-2,EUR,-2,EUR,Palmera
+01/04/2022,Cash,Salary,"1,800",EUR,"1,800",EUR,
+01/04/2022,Cash,Eating out,-11,EUR,-11,EUR,Simbad
+02/04/2022,Cash,Food,-7,EUR,-7,EUR,Area guisona
+02/04/2022,Cash,Eating out,-15,EUR,-15,EUR,Pizza
+05/04/2022,Cash,Eating out,-8.5,EUR,-8.5,EUR,Antonios
+05/04/2022,Cash,Food,-30,EUR,-30,EUR,Lidl
+05/04/2022,Cash,House,-13,EUR,-13,EUR,Bascula
+05/04/2022,Cash,Entertainment,-2.5,EUR,-2.5,EUR,Euromillones
+05/04/2022,Cash,Bills,-37,EUR,-37,EUR,Pepephone
+06/04/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+07/04/2022,Cash,Eating out,-9.75,EUR,-9.75,EUR,Dinar ofi
+07/04/2022,Cash,Eating out,-14.5,EUR,-14.5,EUR,Sopar
+08/04/2022,Cash,Eating out,-6,EUR,-6,EUR,Esmo
+08/04/2022,Cash,Gifts,-6,EUR,-6,EUR,
+08/04/2022,Cash,Food,-7,EUR,-7,EUR,Fruiteria
+08/04/2022,Cash,Health,-60,EUR,-60,EUR,Cant
+08/04/2022,Cash,Eating out,-4.5,EUR,-4.5,EUR,Shwarma
+09/04/2022,Cash,Gifts,-17,EUR,-17,EUR,Varis casa
+09/04/2022,Cash,Sports,-16,EUR,-16,EUR,Hwarang
+12/04/2022,Cash,Food,-27,EUR,-27,EUR,Lidl
+12/04/2022,Cash,Entertainment,-6,EUR,-6,EUR,Estanc
+13/04/2022,Cash,House,-404,EUR,-404,EUR,Parquet
+13/04/2022,Cash,Bills,-37,EUR,-37,EUR,Gas
+14/04/2022,Cash,Eating out,-13.4,EUR,-13.4,EUR,Dinar ofi
+15/04/2022,Cash,Eating out,-37.8,EUR,-37.8,EUR,Dinar thai
+17/04/2022,Cash,Eating out,-10,EUR,-10,EUR,Sopar
+17/04/2022,Cash,Entertainment,-4.5,EUR,-4.5,EUR,Birres
+18/04/2022,Cash,Eating out,-30,EUR,-30,EUR,Ugarit frik
+18/04/2022,Cash,Entertainment,-7,EUR,-7,EUR,Birres frik
+18/04/2022,Cash,Transport,-2.2,EUR,-2.2,EUR,El papiol
+18/04/2022,Cash,Transport,-10.2,EUR,-10.2,EUR,Taxi
+18/04/2022,Cash,Eating out,-4,EUR,-4,EUR,Forn
+19/04/2022,Cash,Food,-40.28,EUR,-40.28,EUR,Mercadona
+19/04/2022,Cash,House,-350,EUR,-350,EUR,Lloguer pis
+19/04/2022,Cash,Bills,-50,EUR,-50,EUR,Aigua
+19/04/2022,Cash,Bills,-35,EUR,-35,EUR,Llum
+22/04/2022,Cash,Food,-4,EUR,-4,EUR,Carn picada vegan
+22/04/2022,Cash,Food,-25,EUR,-25,EUR,Mercadona
+23/04/2022,Cash,Gifts,-24,EUR,-24,EUR,Rosa
+23/04/2022,Cash,House,-10.5,EUR,-10.5,EUR,Varis chino
+23/04/2022,Cash,Food,-6,EUR,-6,EUR,
+23/04/2022,Cash,Eating out,-10,EUR,-10,EUR,Brunch raquel
+23/04/2022,Cash,Entertainment,-25,EUR,-25,EUR,Aso
+24/04/2022,Cash,Eating out,-45,EUR,-45,EUR,Dinar papis
+25/04/2022,Cash,Eating out,-6.75,EUR,-6.75,EUR,Dinar ofi
+25/04/2022,Cash,Eating out,-5,EUR,-5,EUR,Puro café
+26/04/2022,Cash,Health,-60,EUR,-60,EUR,Alicia posturologa
+26/04/2022,Cash,Transport,-11.5,EUR,-11.5,EUR,Metro
+27/04/2022,Cash,Car,-8.5,EUR,-8.5,EUR,Peatge cercs anada
+28/04/2022,Cash,Food,-5.5,EUR,-5.5,EUR,Agustí
+29/04/2022,Cash,Food,-4.6,EUR,-4.6,EUR,Agustí
+30/04/2022,Cash,Eating out,-25,EUR,-25,EUR,Pummarola
+30/04/2022,Cash,Food,-20,EUR,-20,EUR,Lidl
+30/04/2022,Cash,House,-11,EUR,-11,EUR,Llum sal
+03/05/2022,Cash,Eating out,-3.3,EUR,-3.3,EUR,Cafe i pastes
+03/05/2022,Cash,Food,-27,EUR,-27,EUR,Mercadona
+03/05/2022,Cash,House,-250,EUR,-250,EUR,Pis
+03/05/2022,Cash,Bills,-50,EUR,-50,EUR,Llum
+03/05/2022,Cash,Car,-68,EUR,-68,EUR,Impost circulació
+04/05/2022,Cash,Health,-60,EUR,-60,EUR,Cant
+04/05/2022,Cash,Salary,"1,800",EUR,"1,800",EUR,
+04/05/2022,Cash,Bills,-38.2,EUR,-38.2,EUR,Pepephone
+05/05/2022,Cash,House,-180,EUR,-180,EUR,Cecotex conga
+06/05/2022,Cash,Entertainment,-2.25,EUR,-2.25,EUR,Birres camping
+06/05/2022,Cash,Entertainment,-2.25,EUR,-2.25,EUR,Birres camping
+06/05/2022,Cash,Eating out,-18.3,EUR,-18.3,EUR,La real
+06/05/2022,Cash,Entertainment,-4,EUR,-4,EUR,Birres
+06/05/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+07/05/2022,Cash,Entertainment,-50,EUR,-50,EUR,Concert cant
+08/05/2022,Cash,Food,-7.5,EUR,-7.5,EUR,Area guisona
+09/05/2022,Cash,Cosmetic,-50,EUR,-50,EUR,Tapthai toothpaste
+09/05/2022,Cash,Food,-21,EUR,-21,EUR,Mercadona
+10/05/2022,Cash,Food,-12,EUR,-12,EUR,Varis menjar
+10/05/2022,Cash,Entertainment,-6,EUR,-6,EUR,Estanc
+10/05/2022,Cash,Health,-60,EUR,-60,EUR,Alicia posturologa
+11/05/2022,Cash,Eating out,-12.5,EUR,-12.5,EUR,Dinar ofi
+11/05/2022,Cash,Entertainment,-8.5,EUR,-8.5,EUR,Aso
+12/05/2022,Cash,Eating out,-16,EUR,-16,EUR,
+13/05/2022,Cash,House,-110,EUR,-110,EUR,Leroy
+13/05/2022,Cash,Eating out,-24,EUR,-24,EUR,Dinar
+14/05/2022,Cash,Eating out,-30,EUR,-30,EUR,Tarantula
+14/05/2022,Cash,Entertainment,-15,EUR,-15,EUR,Varis
+16/05/2022,Cash,Food,-35,EUR,-35,EUR,Mercadona
+19/05/2022,Cash,Eating out,-14.5,EUR,-14.5,EUR,Sushi
+19/05/2022,Cash,Entertainment,-4.7,EUR,-4.7,EUR,Birres
+19/05/2022,Cash,Eating out,-12,EUR,-12,EUR,Tacos
+20/05/2022,Cash,Gifts,-9,EUR,-9,EUR,Incienso
+20/05/2022,Cash,Food,-19,EUR,-19,EUR,Lidl
+20/05/2022,Cash,Gifts,-20,EUR,-20,EUR,Donació
+22/05/2022,Cash,Entertainment,-6,EUR,-6,EUR,Estanc
+23/05/2022,Cash,Sports,-17,EUR,-17,EUR,Rocodrom
+23/05/2022,Cash,Eating out,-12.5,EUR,-12.5,EUR,Dinar ofi
+24/05/2022,Cash,Eating out,-6,EUR,-6,EUR,Antonios
+25/05/2022,Cash,Food,-13.69,EUR,-13.69,EUR,Mercadona
+26/05/2022,Cash,Eating out,-10.5,EUR,-10.5,EUR,Sushi
+26/05/2022,Cash,Entertainment,-8.6,EUR,-8.6,EUR,
+26/05/2022,Cash,Entertainment,-10,EUR,-10,EUR,Atic
+27/05/2022,Cash,Entertainment,-6.8,EUR,-6.8,EUR,Birres
+27/05/2022,Cash,Gifts,-16,EUR,-16,EUR,Regal papi
+27/05/2022,Cash,Cosmetic,-12,EUR,-12,EUR,Pelu
+27/05/2022,Cash,Eating out,-12,EUR,-12,EUR,Dinar bocata
+28/05/2022,Cash,Gifts,-30,EUR,-30,EUR,Abacus
+28/05/2022,Cash,Food,-8.8,EUR,-8.8,EUR,Fruiteria
+30/05/2022,Cash,Entertainment,-10,EUR,-10,EUR,Birres laia
+31/05/2022,Cash,Food,-6,EUR,-6,EUR,Area guisona
+31/05/2022,Cash,Health,-7.85,EUR,-7.85,EUR,Farmacia
+03/06/2022,Cash,Food,-34,EUR,-34,EUR,Lidl
+03/06/2022,Cash,Entertainment,-6,EUR,-6,EUR,Estanc
+03/06/2022,Cash,Salary,"1,800",EUR,"1,800",EUR,
+04/06/2022,Cash,Eating out,-6.6,EUR,-6.6,EUR,Empanades
+04/06/2022,Cash,Bills,-36.7,EUR,-36.7,EUR,Pepephone
+04/06/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+04/06/2022,Cash,House,-350,EUR,-350,EUR,Lloguer pis
+04/06/2022,Cash,Bills,-41,EUR,-41,EUR,Aigua
+04/06/2022,Cash,Bills,-24,EUR,-24,EUR,Llum
+05/06/2022,Cash,Eating out,-6.75,EUR,-6.75,EUR,St eulalia
+06/06/2022,Cash,Eating out,-19,EUR,-19,EUR,Dinar el prat
+06/06/2022,Cash,Entertainment,-6,EUR,-6,EUR,Gelateria 
+07/06/2022,Cash,Food,-29,EUR,-29,EUR,Mercadona
+08/06/2022,Cash,Eating out,-11.5,EUR,-11.5,EUR,Dinar ofi
+08/06/2022,Cash,Eating out,-6.7,EUR,-6.7,EUR,Cafe
+08/06/2022,Cash,Entertainment,-22.5,EUR,-22.5,EUR,Npk
+08/06/2022,Cash,Bills,-21.33,EUR,-21.33,EUR,Gas
+09/06/2022,Cash,Eating out,-45,EUR,-45,EUR,Vegeano
+09/06/2022,Cash,Sports,-30,EUR,-30,EUR,Leo
+11/06/2022,Cash,Entertainment,-25,EUR,-25,EUR,Vallcarca
+12/06/2022,Cash,Food,-7,EUR,-7,EUR,Dinar 
+12/06/2022,Cash,Entertainment,-7,EUR,-7,EUR,Estanc
+13/06/2022,Cash,Eating out,-17.5,EUR,-17.5,EUR,Dinar ofi
+14/06/2022,Cash,Eating out,-13.95,EUR,-13.95,EUR,Dinar ofi
+14/06/2022,Cash,Sports,-10,EUR,-10,EUR,Mael
+14/06/2022,Cash,Food,-4.15,EUR,-4.15,EUR,Paki
+15/06/2022,Cash,Clothes,-19,EUR,-19,EUR,Decathlon
+17/06/2022,Cash,Gifts,-6,EUR,-6,EUR,Regal Dario
+17/06/2022,Cash,Food,-38,EUR,-38,EUR,Mercadona
+17/06/2022,Cash,Entertainment,-8,EUR,-8,EUR,Birres lode
+17/06/2022,Cash,Entertainment,-5,EUR,-5,EUR,Varis dario
+17/06/2022,Cash,Transport,-11,EUR,-11,EUR,Metro
+17/06/2022,Cash,Entertainment,-40,EUR,-40,EUR,Dario party
+18/06/2022,Cash,Eating out,-26,EUR,-26,EUR,Sopar raquel
+18/06/2022,Cash,Clothes,-40,EUR,-40,EUR,Decathlon
+19/06/2022,Cash,Entertainment,-4.15,EUR,-4.15,EUR,Cafe
+19/06/2022,Cash,Health,-55,EUR,-55,EUR,Cuenco
+21/06/2022,Cash,Eating out,-10.5,EUR,-10.5,EUR,Sushi
+21/06/2022,Cash,Sports,-10,EUR,-10,EUR,Maël
+21/06/2022,Cash,Food,-5,EUR,-5,EUR,Comidita
+23/06/2022,Cash,Gifts,-10,EUR,-10,EUR,Llanterna
+23/06/2022,Cash,Eating out,-22.5,EUR,-22.5,EUR,Sopar st joan
+25/06/2022,Cash,Eating out,-8,EUR,-8,EUR,Café parets
+26/06/2022,Cash,Entertainment,-8.5,EUR,-8.5,EUR,Birra
+26/06/2022,Cash,Entertainment,-8.5,EUR,-8.5,EUR,Estanc
+26/06/2022,Cash,Food,-1.48,EUR,-1.48,EUR,Birra
+27/06/2022,Cash,Car,-84,EUR,-84,EUR,Revisió cotxe
+27/06/2022,Cash,Entertainment,-103,EUR,-103,EUR,Tokens resu
+28/06/2022,Cash,Eating out,-4,EUR,-4,EUR,Puro café
+28/06/2022,Cash,Eating out,-3,EUR,-3,EUR,Entrepa
+28/06/2022,Cash,Eating out,-12.5,EUR,-12.5,EUR,Dinar ofi
+28/06/2022,Cash,Food,-24,EUR,-24,EUR,Mercadona
+29/06/2022,Cash,Eating out,-3,EUR,-3,EUR,Bocata logroño
+30/06/2022,Cash,Clothes,-20,EUR,-20,EUR,Sudadera
+02/07/2022,Cash,Entertainment,-38,EUR,-38,EUR,Resu tokens
+05/07/2022,Cash,Eating out,-16,EUR,-16,EUR,Dinar xoan
+05/07/2022,Cash,Entertainment,-263,EUR,-263,EUR,Resu despeses
+05/07/2022,Cash,Salary,"1,800",EUR,"1,800",EUR,
+06/07/2022,Cash,Food,-28,EUR,-28,EUR,Mercadona
+06/07/2022,Cash,Entertainment,-10,EUR,-10,EUR,Birres
+06/07/2022,Cash,Eating out,-9.5,EUR,-9.5,EUR,Dinar ofi
+06/07/2022,Cash,Eating out,-10,EUR,-10,EUR,Pizza
+06/07/2022,Cash,Car,-80,EUR,-80,EUR,Parking
+07/07/2022,Cash,Eating out,-4.75,EUR,-4.75,EUR,Dinar ofi
+07/07/2022,Cash,Bills,-38,EUR,-38,EUR,Pepephone
+07/07/2022,Cash,Deposits,148,EUR,148,EUR,Renta
+07/07/2022,Cash,House,-350,EUR,-350,EUR,Lloguer pis
+09/07/2022,Cash,Eating out,-32,EUR,-32,EUR,Sopar lode ruth
+09/07/2022,Cash,Entertainment,-12,EUR,-12,EUR,Birres
+11/07/2022,Cash,Eating out,-27,EUR,-27,EUR,Dinar sete
+12/07/2022,Cash,Eating out,-16,EUR,-16,EUR,Dinar ofi
+13/07/2022,Cash,Food,-27,EUR,-27,EUR,Lidl
+14/07/2022,Cash,Eating out,-13,EUR,-13,EUR,Dinar ofi

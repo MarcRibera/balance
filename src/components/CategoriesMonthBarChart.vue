@@ -4,7 +4,7 @@
 
     <el-col :span="6" v-for="month in yearData" :key="month.name">
       <highcharts
-        v-if="!loadingData"
+        v-if="hasDataMonth(month)"
         :options="getCurrentOptions(month)"
       ></highcharts>
     </el-col>
@@ -60,7 +60,6 @@ export default {
           }),
         }
       })
-      console.log('yearData series', series)
       return series
     },
     options() {
@@ -121,7 +120,6 @@ export default {
       this.loadingData = false
     },
     getCurrentOptions(data) {
-      console.log('data', data)
       return {
         chart: {
           type: 'column',
@@ -150,6 +148,13 @@ export default {
           },
         },
       }
+    },
+    hasDataMonth(month) {
+      let hasData = false
+      for (const catData of month.categories) {
+        if (catData.data[0] > 0) hasData = true
+      }
+      return hasData
     },
   },
   data() {

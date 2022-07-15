@@ -1,5 +1,9 @@
 <template>
-  <BarChart :series="data" :title="'title'" :categories="monthNames" />
+  <BarChart
+    :series="data"
+    :title="'Monthly Balance'"
+    :categories="monthNames"
+  />
 </template>
 
 <script>

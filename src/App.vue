@@ -2,7 +2,10 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <LoadData @get-data="loadData" @get-inout-series="getInoutSeries" />
+        <LoadData
+          @get-data="handleDataLoaded"
+          @get-inout-series="getInoutSeries"
+        />
       </el-aside>
       <el-container>
         <el-header class="app-header">
@@ -14,16 +17,37 @@
           <DateSelector :type="'month'" @select="getMonth" />
         </el-header>
         <el-main>
-          <CategoriesMonthBarChart
-            :data="dataStructured"
-            :currentYear="currentYear"
-          ></CategoriesMonthBarChart>
-          <MonthBarchart :data="inoutYearData"></MonthBarchart>
-          <Table
-            :data="dataStructured"
-            :currentYear="currentYear"
-            :currentMonth="currentMonth"
-          ></Table>
+          <el-col :span="24" class="text-center">
+            <h3>GLOBAL POSITION</h3>
+          </el-col>
+          <el-col :span="24">
+            <YearBalance :data="inoutYearData">
+              <MonthBarchart :data="inoutYearData"></MonthBarchart>
+            </YearBalance>
+          </el-col>
+
+          <el-col :span="24" class="text-center space-60">
+            <h3>MONTHLY CATEGORY EVOLUTION</h3>
+          </el-col>
+
+          <el-col :span="24">
+            <CategoriesMonthBarChart
+              :data="dataStructured"
+              :currentYear="currentYear"
+            ></CategoriesMonthBarChart>
+          </el-col>
+
+          <el-col :span="24" class="text-center space-60">
+            <h3>MONTHLY MOVEMENTS</h3>
+          </el-col>
+
+          <el-col :span="24">
+            <Table
+              :data="dataStructured"
+              :currentYear="currentYear"
+              :currentMonth="currentMonth"
+            ></Table>
+          </el-col>
 
           <!-- <TeamCharts
             :sprintCode="currentSprint"
@@ -46,6 +70,7 @@ import Table from './components/Table.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
 import DateSelector from '@/components/DateSelector.vue'
 import CategoriesMonthBarChart from '@/components/CategoriesMonthBarChart.vue'
+import YearBalance from '@/components/YearBalance.vue'
 
 export default {
   name: 'App',
@@ -55,6 +80,7 @@ export default {
     MonthBarchart,
     DateSelector,
     CategoriesMonthBarChart,
+    YearBalance,
   },
 
   computed: {
@@ -75,14 +101,12 @@ export default {
     }
   },
   methods: {
-    loadData(data) {
+    handleDataLoaded(data) {
       console.log('APP, get data structured from data loader', data)
       this.dataStructured = data
-      console.log('this.dataStructured ', this.dataStructured)
     },
     getInoutSeries(data) {
       this.inoutSeries = data
-      console.log('getInoutSeries', data)
     },
     getYear(year) {
       this.currentYear = year
@@ -90,14 +114,6 @@ export default {
     getMonth(month) {
       this.currentMonth = month
     },
-    // setCurrentSprint(value) {
-    //   console.log('value', value)
-    //   this.currentSprint = value
-    // },
-    // getSprintDates(dates) {
-    //   this.since = sprintDateFormatter(dates[0])
-    //   this.until = sprintDateFormatter(dates[dates.length - 1])
-    // },
   },
 }
 </script>

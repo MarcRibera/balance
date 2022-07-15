@@ -39,12 +39,12 @@ export default {
           categories: this.categories ? this.categories : this.getSprintDays(),
         },
         yAxis: {
-          min: 0,
+          //min: 0,
           softMax: 10,
         },
         plotOptions: {
           series: {
-            // borderColor: "#303030",
+            borderColor: '#303030',
             dataLabels: {
               enabled: true,
             },

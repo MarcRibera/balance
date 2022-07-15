@@ -7,7 +7,6 @@
 
 <script>
 import { csv as loadCsv } from 'd3'
-import { round2decimals } from '@/utils/utils'
 import { getCategories } from '@/utils/utils.js'
 
 const MONTHS = [
@@ -62,8 +61,8 @@ export default {
       }
     },
     async loadData() {
-      const data = await loadCsv('balances/data.csv')
-      this.dataLoadedCleaned = data.map((row) => {
+      const dataLoaded = await loadCsv('balances/data.csv')
+      this.dataLoadedCleaned = dataLoaded.map((row) => {
         return {
           date: row.date,
           category: row.category,
@@ -104,7 +103,7 @@ export default {
         let category = monthDataStructured.categories.find(
           (cat) => cat.name === entry.category
         )
-        category.amount += currentAmount
+        if (category) category.amount += currentAmount
       }
 
       this.$emit('get-data', this.dataStructured)
@@ -122,13 +121,20 @@ export default {
             name: 'output',
             data: [],
           },
+          {
+            name: 'balance',
+            data: [],
+          },
         ]
 
         for (const month of this.dataStructured[year]) {
-          const monthTotalIn = round2decimals(month.totalIn) * 1
-          const monthTotalOut = round2decimals(month.totalOut) * -1
+          const monthTotalIn = Math.round(month.totalIn) * 1
+          const monthTotalOut = Math.round(month.totalOut) * -1
+          const monthAverage = monthTotalIn - monthTotalOut
+
           this.inoutSeries[year][0].data.push(monthTotalIn)
           this.inoutSeries[year][1].data.push(monthTotalOut)
+          this.inoutSeries[year][2].data.push(monthAverage)
         }
       }
       this.$emit('get-inout-series', this.inoutSeries)

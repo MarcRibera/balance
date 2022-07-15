@@ -1,3 +1,23 @@
+export function sumArray(data) {
+  const reducer = (accumulator, curr) => accumulator + curr
+  return data.reduce(reducer)
+}
+
+const THOUSAND = 1000
+const MILLION = 1e6
+const BILLION = 1e9
+const TRILLION = 1e12
+
+export function readableNumber(number, precision = 0) {
+  if (number >= TRILLION) return `${(number / TRILLION).toFixed(precision)}T`
+  if (number >= BILLION) return `${(number / BILLION).toFixed(precision)}G`
+  if (number >= MILLION) return `${(number / MILLION).toFixed(precision)}M`
+  if (number >= THOUSAND) return `${(number / THOUSAND).toFixed(precision)}K`
+  if (number % 1 != 0) return number.toFixed(precision)
+
+  return number
+}
+
 export function dateFormatter(dateStr) {
   const date = new Date(dateStr)
 
