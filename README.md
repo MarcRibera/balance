@@ -1,4 +1,4 @@
-# balance project
+# Balance Project
 Project to visualize financial data
 
 Technologies:
