@@ -1,13 +1,21 @@
 <template>
-  <el-button type="primary" @click="loadData">
-    Upload Team Work
-    <i class="el-icon-upload el-icon-right"></i>
-  </el-button>
+  <div>
+    <vue-csv-import
+      headers
+      v-model="csv"
+      :autoMatchFields="true"
+      :autoMatchIgnoreCase="true"
+      :map-fields="['date', 'category', 'amount', 'description']"
+    >
+    </vue-csv-import>
+
+    <button @click.prevent="structureData()">load</button>
+  </div>
 </template>
 
 <script>
-import { csv as loadCsv } from 'd3'
-import { getCategories } from '@/utils/utils.js'
+import { getCategories, round2decimals } from '@/utils/utils.js'
+import { VueCsvImport } from 'vue-csv-import'
 
 const MONTHS = [
   'January',
@@ -26,8 +34,12 @@ const MONTHS = [
 const YEARS = [2021, 2022]
 
 export default {
+  components: {
+    VueCsvImport,
+  },
   data() {
     return {
+      csv: null,
       dataLoadedCleaned: [],
       dataStructured: [],
       inoutSeries: [],
@@ -36,7 +48,6 @@ export default {
   },
   created() {
     this.createDataStructure()
-    this.loadData()
   },
   methods: {
     createDataStructure() {
@@ -60,21 +71,11 @@ export default {
         }
       }
     },
-    async loadData() {
-      const dataLoaded = await loadCsv('balances/data.csv')
-      this.dataLoadedCleaned = dataLoaded.map((row) => {
-        return {
-          date: row.date,
-          category: row.category,
-          amount: row.amount,
-          description: row.description,
-        }
-      })
-      this.structureData()
-    },
+
     structureData() {
-      //const months = []
-      for (const entry of this.dataLoadedCleaned) {
+      this.csv.shift() // remove csv headers
+
+      for (const entry of this.csv) {
         const currentYear = entry.date.slice(6, 10)
         const currentMonth = entry.date.slice(3, 5)
         const currentMonthNumber = currentMonth * 1
@@ -103,7 +104,11 @@ export default {
         let category = monthDataStructured.categories.find(
           (cat) => cat.name === entry.category
         )
-        if (category) category.amount += currentAmount
+
+        if (category) {
+          category.amount += currentAmount
+          category.amount = round2decimals(category.amount) * 1
+        }
       }
 
       this.$emit('get-data', this.dataStructured)

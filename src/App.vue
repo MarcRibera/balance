@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <el-container>
-      <el-aside width="200px">
+      <el-aside>
         <LoadData
           @get-data="handleDataLoaded"
           @get-inout-series="getInoutSeries"
         />
+        <!-- <UploadButton></UploadButton> -->
       </el-aside>
       <el-container>
         <el-header class="app-header">
@@ -48,12 +49,6 @@
               :currentMonth="currentMonth"
             ></Table>
           </el-col>
-
-          <!-- <TeamCharts
-            :sprintCode="currentSprint"
-            @sprint-dates-calculated="getSprintDates"
-          />
-          <MembersBarchart :sprintCode="currentSprint" /> -->
         </el-main>
         <el-footer>Footer</el-footer>
       </el-container>
@@ -62,9 +57,6 @@
 </template>
 
 <script>
-// import MembersBarchart from './components/MembersBarchart.vue'
-// import TeamCharts from './components/TeamCharts.vue'
-// import { sprintDateFormatter } from './utils/utils.js'
 import LoadData from './components/LoadData.vue'
 import Table from './components/Table.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
