@@ -1,4 +1,12 @@
-# tech-metrics
+# balance project
+Project to visualize financial data
+
+Technologies:
+- vue 2 + element ui
+- Highcharts
+- csv-loader
+
+
 
 ## Project setup
 ```
