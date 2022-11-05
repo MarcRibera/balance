@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <el-card class="main-card">
+    <el-col :span="24" class="text-center">
+      <h3>GLOBAL POSITION</h3>
+    </el-col>
     <!-- Total values -->
     <el-row class="text-center">
       <h4>Total year values</h4>
@@ -72,7 +75,7 @@
       </el-col>
     </el-row>
     <!-- ./Monthly avg values -->
-  </div>
+  </el-card>
 </template>
 
 <script>
@@ -141,4 +144,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="css" scoped>
+.main-card.el-card {
+  padding-bottom: 32px;
+}
+</style>

@@ -6,51 +6,33 @@
           @get-data="handleDataLoaded"
           @get-inout-series="getInoutSeries"
         />
-        <!-- <UploadButton></UploadButton> -->
       </el-aside>
       <el-container>
-        <el-header class="app-header">
-          <p>
-            From <b>{{ since }}</b> to <b>{{ until }}</b>
-          </p>
+        <DatePicker
+          @select-year="getYear"
+          @select-month="getMonth"
+        ></DatePicker>
 
-          <DateSelector :type="'year'" @select="getYear" />
-          <DateSelector :type="'month'" @select="getMonth" />
-        </el-header>
         <el-main>
-          <el-col :span="24" class="text-center">
-            <h3>GLOBAL POSITION</h3>
-          </el-col>
-          <el-col :span="24">
-            <YearBalance :data="inoutYearData">
-              <MonthBarchart :data="inoutYearData"></MonthBarchart>
-            </YearBalance>
-          </el-col>
+          <GlobalPosition :data="inoutYearData">
+            <MonthBarchart :data="inoutYearData"></MonthBarchart>
+          </GlobalPosition>
 
-          <el-col :span="24" class="text-center space-60">
-            <h3>MONTHLY CATEGORY EVOLUTION</h3>
-          </el-col>
+          <CategoriesMonthBarChart
+            :data="dataStructured"
+            :currentYear="currentYear"
+          ></CategoriesMonthBarChart>
 
-          <el-col :span="24">
-            <CategoriesMonthBarChart
-              :data="dataStructured"
-              :currentYear="currentYear"
-            ></CategoriesMonthBarChart>
-          </el-col>
-
-          <el-col :span="24" class="text-center space-60">
-            <h3>MONTHLY MOVEMENTS</h3>
-          </el-col>
-
-          <el-col :span="24">
-            <Table
-              :data="dataStructured"
-              :currentYear="currentYear"
-              :currentMonth="currentMonth"
-            ></Table>
-          </el-col>
+          <MonthMovements
+            :data="dataStructured"
+            :currentYear="currentYear"
+            :currentMonth="currentMonth"
+          ></MonthMovements>
         </el-main>
-        <el-footer>Footer</el-footer>
+
+        <el-footer>
+          <TheFooter></TheFooter>
+        </el-footer>
       </el-container>
     </el-container>
   </div>
@@ -58,21 +40,23 @@
 
 <script>
 import LoadData from './components/LoadData.vue'
-import Table from './components/Table.vue'
+import MonthMovements from './components/MonthMovements.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
-import DateSelector from '@/components/DateSelector.vue'
 import CategoriesMonthBarChart from '@/components/CategoriesMonthBarChart.vue'
-import YearBalance from '@/components/YearBalance.vue'
+import GlobalPosition from '@/components/GlobalPosition.vue'
+import TheFooter from '@/components/TheFooter.vue'
+import DatePicker from '@/components/DatePicker.vue'
 
 export default {
   name: 'App',
   components: {
     LoadData,
-    Table,
+    MonthMovements,
     MonthBarchart,
-    DateSelector,
+    DatePicker,
     CategoriesMonthBarChart,
-    YearBalance,
+    GlobalPosition,
+    TheFooter,
   },
 
   computed: {
@@ -94,7 +78,7 @@ export default {
   },
   methods: {
     handleDataLoaded(data) {
-      console.log('APP, get data structured from data loader', data)
+      console.log('APP, get data structured from LoadData', data)
       this.dataStructured = data
     },
     getInoutSeries(data) {
@@ -110,11 +94,4 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.app-header {
-  display: flex;
-  p {
-    margin-left: 16px;
-  }
-}
-</style>
+<style lang="scss"></style>

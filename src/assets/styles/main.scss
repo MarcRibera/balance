@@ -19,3 +19,27 @@
 body {
   font-family: 'Inter', sans-serif;
 }
+
+//////////////////////////////////////////////////////////////////////
+
+// common sytles for collapse
+.collapse {
+  border-bottom: 0px;
+  border-top: 0px;
+  .el-collapse-item__header {
+    font-size: 1.17em;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    transition: 0.3s all;
+    border-bottom: 0px;
+    padding: 0px 8%;
+    &:hover {
+      background-color: lightsteelblue;
+      border-radius: 6px;
+    }
+  }
+  .el-collapse-item__wrap {
+    margin-top: 50px;
+    border-bottom: 0px;
+  }
+}

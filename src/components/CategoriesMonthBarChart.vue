@@ -1,14 +1,20 @@
 <template>
-  <div>
-    <highcharts v-if="!loadingData" :options="options"></highcharts>
+  <el-collapse class="collapse">
+    <el-card>
+      <el-collapse-item title="Monthly  Category Evolution">
+        <el-col :span="24">
+          <highcharts v-if="!loadingData" :options="options"></highcharts>
+        </el-col>
 
-    <el-col :span="6" v-for="month in yearData" :key="month.name">
-      <highcharts
-        v-if="hasDataMonth(month)"
-        :options="getCurrentOptions(month)"
-      ></highcharts>
-    </el-col>
-  </div>
+        <el-col :span="6" v-for="month in yearData" :key="month.name">
+          <highcharts
+            v-if="hasDataMonth(month)"
+            :options="getCurrentOptions(month)"
+          ></highcharts>
+        </el-col>
+      </el-collapse-item>
+    </el-card>
+  </el-collapse>
 </template>
 
 <script>
@@ -171,4 +177,12 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.collapse .el-card {
+  margin-bottom: 12px;
+  margin-top: 32px;
+  ::v-deep .el-card__body {
+    padding: 10px 16px;
+  }
+}
+</style>

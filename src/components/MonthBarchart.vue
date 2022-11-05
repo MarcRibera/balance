@@ -1,9 +1,5 @@
 <template>
-  <BarChart
-    :series="data"
-    :title="'Monthly Balance'"
-    :categories="monthNames"
-  />
+  <BarChart :series="data" :categories="monthNames" />
 </template>
 
 <script>
@@ -39,5 +35,3 @@ export default {
 //   },
 // ]
 </script>
-
-<style></style>
