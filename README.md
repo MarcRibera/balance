@@ -6,6 +6,8 @@ Technologies:
 - Highcharts
 - csv-loader
 
+Live [Demo](https://balance.marcribera.net/)
+
 
 
 ## Project setup
