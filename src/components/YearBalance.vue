@@ -49,7 +49,7 @@
           :header="'INPUT (Month avg)'"
           :body-style="{ color: '#7CB5EC', padding: '0px' }"
         >
-          <h2>{{ this.inputAvg }}&euro;</h2>
+          <h2>{{ inputAvgFormatted }}</h2>
         </el-card>
       </el-col>
       <el-col :span="4" class="text-center">
@@ -58,7 +58,7 @@
           :header="'OUTPUT (Month avg)'"
           :body-style="{ color: '#303030', padding: '0px' }"
         >
-          <h2>{{ this.outputAvg }}&euro;</h2>
+          <h2>{{ outputAvgFormatted }}</h2>
         </el-card>
       </el-col>
       <el-col :span="4" class="text-center">
@@ -67,7 +67,7 @@
           :header="'BALANCE (Month avg)'"
           :body-style="{ color: '#51e151', padding: '0px' }"
         >
-          <h2>{{ this.balanceAvg }}&euro;</h2>
+          <h2>{{ balanceAvgFormatted }}</h2>
         </el-card>
       </el-col>
     </el-row>
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { sumArray, readableNumber } from '@/utils/utils'
+import { sumArray, readableNumber, numberFormatter } from '@/utils/utils'
 
 export default {
   components: {},
@@ -107,14 +107,18 @@ export default {
       this.calculateTotalValues()
     },
   },
-  //   computed: {
-  //     inputTotal() {
-  //       return sumArray(this.inputData?.data)
-  //     },
-  //     outputTotal() {
-  //       return sumArray(this.outputData?.data)
-  //     },
-  //   },
+  computed: {
+    inputAvgFormatted() {
+      return numberFormatter(this.inputAvg)
+    },
+    outputAvgFormatted() {
+      return numberFormatter(this.outputAvg)
+    },
+    balanceAvgFormatted() {
+      return numberFormatter(this.balanceAvg)
+    },
+  },
+
   methods: {
     calculateMonthAvg() {
       this.inputAvg = this.calculateAverage(this.inputData.data)

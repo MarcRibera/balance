@@ -28,6 +28,14 @@ export function dateFormatter(dateStr) {
   }).format(date)
 }
 
+export function numberFormatter(number) {
+  return new Intl.NumberFormat('de-DE', {
+    style: 'currency',
+    currency: 'EUR',
+    minimumFractionDigits: 0,
+  }).format(number)
+}
+
 export function round2decimals(num) {
   return (Math.round(num * 100) / 100).toFixed(2)
 }

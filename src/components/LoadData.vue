@@ -2,14 +2,21 @@
   <div>
     <vue-csv-import
       headers
-      v-model="csv"
+      v-model="csvImportedData"
       :autoMatchFields="true"
       :autoMatchIgnoreCase="true"
+      :loadBtnText="'1-Preview Data'"
       :map-fields="['date', 'category', 'amount', 'description']"
     >
     </vue-csv-import>
 
-    <button @click.prevent="structureData()">load</button>
+    <button
+      class="load-btn"
+      :disabled="!csvImportedData"
+      @click.prevent="loadDataFromInput()"
+    >
+      2-Load Data
+    </button>
   </div>
 </template>
 
@@ -39,7 +46,7 @@ export default {
   },
   data() {
     return {
-      csv: null,
+      csvImportedData: null,
       dataLoadedCleaned: [],
       dataStructured: [],
       inoutSeries: [],
@@ -48,6 +55,7 @@ export default {
   },
   created() {
     this.createDataStructure()
+    this.initData()
   },
   methods: {
     createDataStructure() {
@@ -71,11 +79,24 @@ export default {
         }
       }
     },
+    initData() {
+      let storedData = sessionStorage.getItem('localData')
+      storedData = JSON.parse(storedData)
+      if (storedData) this.structureData(storedData)
+    },
 
-    structureData() {
-      this.csv.shift() // remove csv headers
+    loadDataFromInput() {
+      sessionStorage.clear()
+      sessionStorage.setItem('localData', JSON.stringify(this.csvImportedData))
 
-      for (const entry of this.csv) {
+      this.structureData(this.csvImportedData)
+
+      window.location.reload()
+    },
+    structureData(rowData) {
+      rowData.shift() // remove csv headers
+
+      for (const entry of rowData) {
         const currentYear = entry.date.slice(6, 10)
         const currentMonth = entry.date.slice(3, 5)
         const currentMonthNumber = currentMonth * 1
@@ -160,4 +181,14 @@ export default {
 }
 </script>
 
-<style lang="css" scoped></style>
+<style lang="css" scoped>
+.load-btn:not(:disabled) {
+  margin: 6% auto;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: #49ba49;
+  transition: 0.3s all;
+  border: 2px solid rgb(70, 70, 70);
+}
+</style>
