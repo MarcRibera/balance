@@ -45,8 +45,6 @@ export default {
       this.$emit('select', value)
     },
     createSelectorOptions() {
-      this.elements.sort((a, b) => (a < b ? 1 : -1))
-
       this.options = this.elements.map((item) => {
         return {
           value: item,
