@@ -1,15 +1,18 @@
 <template>
-  <el-collapse class="collapse">
+  <el-collapse class="collapse" v-model="activeItem">
     <el-card>
-      <el-collapse-item title="Monthly  Category Evolution">
+      <el-collapse-item name="1" title="Monthly  Category Evolution">
         <el-col :span="24">
-          <highcharts v-if="!loadingData" :options="options"></highcharts>
+          <highcharts
+            v-if="!loadingData"
+            :options="lineChartOptions"
+          ></highcharts>
         </el-col>
 
         <el-col :span="6" v-for="month in yearData" :key="month.name">
           <highcharts
             v-if="hasDataMonth(month)"
-            :options="getCurrentOptions(month)"
+            :options="getCurrentMonthOptions(month)"
           ></highcharts>
         </el-col>
       </el-collapse-item>
@@ -23,7 +26,8 @@ import {
   getCategories,
   getYears,
   getMonthNames,
-  getCategoriesColors,
+  getColors,
+  CATEGORIES_COLORS,
 } from '@/utils/utils.js'
 
 export default {
@@ -48,10 +52,6 @@ export default {
   },
   computed: {
     currentSeries() {
-      console.log(
-        'categories currentSeries',
-        this.dataStructured[this.currentYear]
-      )
       return this.dataStructured[this.currentYear]
     },
     yearData() {
@@ -68,7 +68,7 @@ export default {
       })
       return series
     },
-    options() {
+    lineChartOptions() {
       return {
         title: {
           text: this.title,
@@ -82,7 +82,7 @@ export default {
           min: 0,
           softMax: 10,
         },
-        colors: getCategoriesColors(),
+        colors: getColors(),
         legend: {
           layout: 'vertical',
           align: 'left',
@@ -125,35 +125,84 @@ export default {
       }
       this.loadingData = false
     },
-    getCurrentOptions(data) {
-      return {
+    getTopCategories(data) {
+      let categories = data.categories.filter((cat) => cat.data[0] > 1)
+      categories.sort((a, b) => {
+        if (a.data[0] > b.data[0]) {
+          return -1
+        }
+        if (a.data[0] < b.data[0]) {
+          return 1
+        }
+        return 0
+      })
+
+      return categories.slice(0, 7)
+    },
+    getCurrentCategoriesColors(series) {
+      const currentColors = []
+
+      for (const cat of series) {
+        const found = CATEGORIES_COLORS.find(
+          (colorEle) => colorEle.key.toLowerCase() === cat.name.toLowerCase()
+        )
+        currentColors.push(found.value)
+      }
+
+      return currentColors
+    },
+    getCurrentMonthOptions(data) {
+      const monthOptions = {
         chart: {
-          type: 'column',
+          type: 'bar',
+          height: '350px',
         },
         title: {
           text: data.name,
         },
+        legend: {
+          enabled: false,
+        },
         xAxis: {
-          categories: getMonthNames(),
-          minPadding: 0,
-          maxPadding: 0,
+          categories: [''],
         },
-        series: data.categories,
-        yAxis: {
-          min: 0,
-          max: 700,
-        },
-        colors: getCategoriesColors(),
+        yAxis: { min: 0, max: 700 },
+        series: this.getTopCategories(data),
         plotOptions: {
-          series: {
-            groupPadding: 0,
-            pointWidth: 20,
+          bar: {
+            borderRadius: 7,
             dataLabels: {
               enabled: true,
             },
           },
+          series: {
+            groupPadding: 0,
+            pointWidth: 20,
+            dataLabels: [
+              {
+                enabled: true,
+                y: 8,
+              },
+              {
+                enabled: true,
+                formatter: function () {
+                  return this.point.series.name
+                },
+                y: -8,
+                style: {
+                  fontWeight: 'normal',
+                  opacity: 0.7,
+                },
+              },
+            ],
+          },
         },
       }
+      const colors = this.getCurrentCategoriesColors(monthOptions.series)
+
+      monthOptions.colors = colors
+
+      return monthOptions
     },
     hasDataMonth(month) {
       let hasData = false
@@ -168,6 +217,7 @@ export default {
       dataStructured: [],
       dataReceived: [],
       loadingData: false,
+      activeItem: '1',
     }
   },
   created() {
