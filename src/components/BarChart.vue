@@ -18,7 +18,6 @@ export default {
       return {
         chart: {
           type: 'column',
-          spacing: [40, 40, 40, 40],
         },
         title: {
           text: this.title,
@@ -44,9 +43,14 @@ export default {
         },
         plotOptions: {
           series: {
-            borderColor: '#303030',
+            borderRadius: 3,
+            borderColor: '',
             dataLabels: {
+              allowOverlap: true,
               enabled: true,
+              rotation: -30,
+              y: -15,
+              x: 10,
             },
           },
         },

@@ -4,11 +4,12 @@
       <el-collapse-item name="1" title="Monthly  Category Evolution">
         <el-col :span="24">
           <highcharts
-            v-if="!loadingData"
+            v-show="!loadingData"
             :options="lineChartOptions"
           ></highcharts>
         </el-col>
 
+        <h2 style="padding: 0 8%">Top 7 Expensive Categories</h2>
         <el-col :span="6" v-for="month in yearData" :key="month.name">
           <highcharts
             v-if="hasDataMonth(month)"
@@ -166,7 +167,7 @@ export default {
         xAxis: {
           categories: [''],
         },
-        yAxis: { min: 0, max: 700 },
+        yAxis: { min: 0, max: 700, title: { text: '' } },
         series: this.getTopCategories(data),
         plotOptions: {
           bar: {
@@ -181,17 +182,18 @@ export default {
             dataLabels: [
               {
                 enabled: true,
-                y: 8,
+                y: 7,
               },
               {
                 enabled: true,
                 formatter: function () {
                   return this.point.series.name
                 },
-                y: -8,
+                y: -7,
                 style: {
                   fontWeight: 'normal',
-                  opacity: 0.7,
+                  opacity: 0.9,
+                  color: '#48494B',
                 },
               },
             ],

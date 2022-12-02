@@ -43,13 +43,13 @@
 
     <!-- Monthly avg values -->
     <el-row class="text-center">
-      <h4>Monthly average</h4>
+      <h3>Monthly average</h3>
     </el-row>
     <el-row :gutter="20" :type="'flex'" :justify="'center'">
       <el-col :span="4" class="text-center">
         <el-card
           shadow="always"
-          :header="'INPUT (Month avg)'"
+          :header="'INPUT'"
           :body-style="{ color: '#7CB5EC', padding: '0px' }"
         >
           <h2>{{ inputAvgFormatted }}</h2>
@@ -58,7 +58,7 @@
       <el-col :span="4" class="text-center">
         <el-card
           shadow="always"
-          :header="'OUTPUT (Month avg)'"
+          :header="'OUTPUT'"
           :body-style="{ color: '#303030', padding: '0px' }"
         >
           <h2>{{ outputAvgFormatted }}</h2>
@@ -67,7 +67,7 @@
       <el-col :span="4" class="text-center">
         <el-card
           shadow="always"
-          :header="'BALANCE (Month avg)'"
+          :header="'BALANCE'"
           :body-style="{ color: '#51e151', padding: '0px' }"
         >
           <h2>{{ balanceAvgFormatted }}</h2>

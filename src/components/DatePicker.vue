@@ -27,9 +27,11 @@ export default {
 <style lang="scss" scoped>
 .date-picker {
   position: fixed;
+  right: 2%;
   z-index: 99;
   display: flex;
-  height: 60px;
+  height: 50px;
+  width: 200px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -40,6 +42,9 @@ export default {
   margin-top: 6px;
   p {
     margin-left: 16px;
+  }
+  ::v-deep input.el-input__inner {
+    height: 35px;
   }
 
   .el-select {
