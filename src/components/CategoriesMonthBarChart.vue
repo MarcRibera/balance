@@ -29,6 +29,7 @@ import {
   getMonthNames,
   getColors,
   CATEGORIES_COLORS,
+  sumArray,
 } from '@/utils/utils.js'
 
 export default {
@@ -48,12 +49,16 @@ export default {
   watch: {
     data() {
       this.dataReceived = this.data
-      this.structureData()
+      this.structureLinechartData()
     },
   },
   computed: {
-    currentSeries() {
-      return this.dataStructured[this.currentYear]
+    linechartSeries() {
+      console.log(
+        'Month Linechart Series',
+        this.linechartDataStructured[this.currentYear]
+      )
+      return this.linechartDataStructured[this.currentYear]
     },
     yearData() {
       const series = this.dataReceived[this.currentYear]?.map((month) => {
@@ -78,7 +83,7 @@ export default {
           categories: getMonthNames(),
           //crosshair: true,
         },
-        series: this.currentSeries,
+        series: this.linechartSeries,
         yAxis: {
           min: 0,
           softMax: 10,
@@ -100,31 +105,44 @@ export default {
     },
   },
   methods: {
-    createDataStructure() {
+    createLinechartDataStructure() {
       const categories = getCategories()
       const years = getYears()
 
       for (const year of years) {
-        this.dataStructured[year] = categories.map((cat) => {
+        this.linechartDataStructured[year] = categories.map((cat) => {
           return {
             name: cat,
             data: [],
+            totalAmount: 0,
           }
         })
       }
     },
-    structureData() {
+    structureLinechartData() {
       for (const yearKey in this.dataReceived) {
         for (const monthData of this.dataReceived[yearKey]) {
           for (const category of monthData.categories) {
-            const currentCat = this.dataStructured[yearKey].find(
+            const currentCat = this.linechartDataStructured[yearKey].find(
               (cat) => cat.name === category.name
             )
             currentCat.data.push(category.amount * -1)
           }
         }
       }
+
       this.loadingData = false
+
+      this.getTotalAmountForCategory()
+    },
+    getTotalAmountForCategory() {
+      for (const yearKey in this.dataReceived) {
+        for (const month of this.linechartDataStructured[yearKey]) {
+          month.totalAmount = sumArray(month.data)
+        }
+      }
+
+      this.$emit('get-total-amount-by-category', this.linechartDataStructured)
     },
     getTopCategories(data) {
       let categories = data.categories.filter((cat) => cat.data[0] > 1)
@@ -216,14 +234,14 @@ export default {
   },
   data() {
     return {
-      dataStructured: [],
+      linechartDataStructured: [],
       dataReceived: [],
       loadingData: false,
       activeItem: '1',
     }
   },
   created() {
-    this.createDataStructure()
+    this.createLinechartDataStructure()
     this.loadingData = true
   },
 }
