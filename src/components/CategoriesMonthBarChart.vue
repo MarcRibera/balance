@@ -54,10 +54,6 @@ export default {
   },
   computed: {
     linechartSeries() {
-      console.log(
-        'Month Linechart Series',
-        this.linechartDataStructured[this.currentYear]
-      )
       return this.linechartDataStructured[this.currentYear]
     },
     yearData() {
@@ -133,9 +129,9 @@ export default {
 
       this.loadingData = false
 
-      this.getTotalAmountForCategory()
+      this.getTotalAmountByCategory()
     },
-    getTotalAmountForCategory() {
+    getTotalAmountByCategory() {
       for (const yearKey in this.dataReceived) {
         for (const month of this.linechartDataStructured[yearKey]) {
           month.totalAmount = sumArray(month.data)

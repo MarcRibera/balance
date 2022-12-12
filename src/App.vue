@@ -18,9 +18,15 @@
             <MonthBarchart :data="inoutYearData"></MonthBarchart>
           </GlobalPosition>
 
+          <GlobalExpenses
+            :yearData="inoutYearData"
+            :categoriesData="currentYearTotalAmountByCategory"
+          ></GlobalExpenses>
+
           <CategoriesMonthBarChart
             :data="dataStructured"
             :currentYear="currentYear"
+            @get-total-amount-by-category="getTotalAmountByCategory"
           ></CategoriesMonthBarChart>
 
           <MonthMovements
@@ -42,6 +48,7 @@
 import LoadData from './components/LoadData.vue'
 import MonthMovements from './components/MonthMovements.vue'
 import MonthBarchart from './components/MonthBarchart.vue'
+import GlobalExpenses from './components/GlobalExpenses.vue'
 import CategoriesMonthBarChart from '@/components/CategoriesMonthBarChart.vue'
 import GlobalPosition from '@/components/GlobalPosition.vue'
 import TheFooter from '@/components/TheFooter.vue'
@@ -57,11 +64,15 @@ export default {
     CategoriesMonthBarChart,
     GlobalPosition,
     TheFooter,
+    GlobalExpenses,
   },
 
   computed: {
     inoutYearData() {
       return this.inoutSeries[this.currentYear]
+    },
+    currentYearTotalAmountByCategory() {
+      return this.totalAmountByCategory[this.currentYear]
     },
   },
   data() {
@@ -74,6 +85,7 @@ export default {
       until: null,
       dataStructured: [],
       inoutSeries: [],
+      totalAmountByCategory: [],
     }
   },
   methods: {
@@ -83,6 +95,9 @@ export default {
     },
     getInoutSeries(data) {
       this.inoutSeries = data
+    },
+    getTotalAmountByCategory(data) {
+      this.totalAmountByCategory = data
     },
     getYear(year) {
       this.currentYear = year

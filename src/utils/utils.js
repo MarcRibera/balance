@@ -1,6 +1,7 @@
 export function sumArray(data) {
   const reducer = (accumulator, curr) => accumulator + curr
-  return data.reduce(reducer)
+  const sum = data.reduce(reducer)
+  return round2decimals(sum)
 }
 
 const THOUSAND = 1000
