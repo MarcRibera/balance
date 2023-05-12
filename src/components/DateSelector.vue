@@ -16,7 +16,7 @@ import { getMonthNames } from '@/utils/utils'
 // TODO this component should be agnostic, so  this const
 // should be removed, and get this data as a prop
 const MONTHS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-const YEARS = [2021, 2022]
+const YEARS = [2021, 2022, 2023]
 
 export default {
   props: {
