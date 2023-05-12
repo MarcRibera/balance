@@ -22,6 +22,7 @@
 
 <script>
 import { getCategories, round2decimals } from '@/utils/utils.js'
+import { getYears } from '@/utils/utils'
 import { VueCsvImport } from 'vue-csv-import'
 
 const MONTHS = [
@@ -38,7 +39,7 @@ const MONTHS = [
   'November',
   'December',
 ]
-const YEARS = [2021, 2022, 2023]
+const YEARS = getYears()
 
 export default {
   components: {

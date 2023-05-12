@@ -80,7 +80,14 @@ export function getCategories() {
 }
 
 export function getYears() {
-  return [2021, 2022]
+  const currentYear = new Date().getUTCFullYear()
+  let years = []
+
+  for (let initYear = 2021; initYear <= currentYear; initYear++) {
+    years.push(initYear)
+  }
+
+  return years
 }
 const COLORS = [
   '#53A4DD', // house
