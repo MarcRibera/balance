@@ -1,26 +1,30 @@
 <template>
-  <div>
-    <h2>Global expenses</h2>
-    <h4>Expenses percent based on Total Year Input & Output</h4>
+  <el-col :span="24">
+    <h2>Global expenses by Category</h2>
+    <p>
+      Out & IN -> % based on Total Year Output or Input // Avg -> Monthly
+      average
+    </p>
 
-    <el-col :span="24">
-      <div v-for="(cat, index) in categoriesExpenses" :key="index">
-        <p>
-          {{ cat.name }} -> {{ cat.totalFormatted }} -> In:
-          {{ cat.percentOnInput }}% | Out:{{ cat.percentOnOutput }}%
-        </p>
-      </div>
-    </el-col>
-  </div>
+    <div class="cards-wrapper" v-if="showChart">
+      <MonthlyCard
+        v-for="(cat, index) in categoriesExpenses"
+        :key="index"
+        :category="cat"
+      >
+      </MonthlyCard>
+    </div>
+  </el-col>
 </template>
 
 <script>
 import { sumArray, round2decimals, readableNumber } from '@/utils/utils'
 import _clonedeep from 'lodash/cloneDeep'
+import MonthlyCard from './MonthlyCard.vue'
 
 export default {
   name: 'GlobalExpenses',
-  components: {},
+  components: { MonthlyCard },
   props: {
     categoriesData: {
       type: Array,
@@ -37,6 +41,7 @@ export default {
       this.categoriesExpenses = this.calculateCategoriesExpenses(
         categoriesDataCloned
       )
+      this.refreshChart()
     },
   },
   computed: {
@@ -45,24 +50,33 @@ export default {
       return sumArray(yearInputData.data)
     },
     yearOutputAmount() {
-      const yearOutputData = this.yearData.find((ele) => ele.name === 'input')
+      const yearOutputData = this.yearData.find((ele) => ele.name === 'output')
       return sumArray(yearOutputData.data)
     },
   },
   data() {
     return {
       categoriesExpenses: [],
+      showChart: false,
     }
   },
   methods: {
     calculateCategoriesExpenses(categories) {
+      // get months length with values. Is based on Food cat, cause it will be always filled
+      const foodCat = categories.find((cat) => cat.name === 'Food')
+      const monthsFilled = foodCat.data.filter((val) => val !== 0)
+
       // calculate categories percent
       for (const cat of categories) {
         const percentOnInput = (cat.totalAmount / this.yearInputAmount) * 100
         const percentOnOutput = (cat.totalAmount / this.yearOutputAmount) * 100
 
-        cat.percentOnInput = round2decimals(percentOnInput)
-        cat.percentOnOutput = round2decimals(percentOnOutput)
+        cat.percentOnInput = round2decimals(percentOnInput, 0)
+        cat.percentOnOutput = round2decimals(percentOnOutput, 0)
+        cat.monthAverage = round2decimals(
+          cat.totalAmount / monthsFilled.length,
+          0
+        )
       }
 
       // sort categories
@@ -72,7 +86,7 @@ export default {
       categories = categories.map((cat) => {
         return {
           ...cat,
-          totalFormatted: readableNumber(cat.totalAmount * 1, 1),
+          totalFormatted: readableNumber(cat.totalAmount * 1, 2, true),
         }
       })
 
@@ -80,10 +94,10 @@ export default {
     },
     getTopCategoriesSorted(data) {
       let categories = data.sort((a, b) => {
-        if (a.percentOnInput * 1 > b.percentOnInput * 1) {
+        if (a.totalAmount * 1 > b.totalAmount * 1) {
           return -1
         }
-        if (a.percentOnInput * 1 < b.percentOnInput * 1) {
+        if (a.totalAmount * 1 < b.totalAmount * 1) {
           return 1
         }
         return 0
@@ -91,6 +105,20 @@ export default {
 
       return categories.slice(0)
     },
+    refreshChart() {
+      this.showChart = false
+      setTimeout(() => {
+        this.showChart = true
+      })
+    },
   },
 }
 </script>
+
+<style lang="scss">
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+</style>

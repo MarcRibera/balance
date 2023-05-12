@@ -9,11 +9,13 @@ const MILLION = 1e6
 const BILLION = 1e9
 const TRILLION = 1e12
 
-export function readableNumber(number, precision = 0) {
+export function readableNumber(number, precision = 0, baseOnK = false) {
+  if (baseOnK) return `${(number / THOUSAND).toFixed(precision)}K`
   if (number >= TRILLION) return `${(number / TRILLION).toFixed(precision)}T`
   if (number >= BILLION) return `${(number / BILLION).toFixed(precision)}G`
   if (number >= MILLION) return `${(number / MILLION).toFixed(precision)}M`
   if (number >= THOUSAND) return `${(number / THOUSAND).toFixed(precision)}K`
+
   if (number % 1 != 0) return number.toFixed(precision)
 
   return number
@@ -37,8 +39,8 @@ export function numberFormatter(number) {
   }).format(number)
 }
 
-export function round2decimals(num) {
-  return (Math.round(num * 100) / 100).toFixed(2)
+export function round2decimals(num, precision = 2) {
+  return (Math.round(num * 100) / 100).toFixed(precision)
 }
 
 export function getMonthNames() {
@@ -91,35 +93,35 @@ export function getYears() {
 }
 const COLORS = [
   '#53A4DD', // house
-  '#EC7AD2', // food
-  '#87E0C4', // sports
+  '#D68EC5', // food
+  '#87CDE0', // sports
   '#E13F3F', // health
-  '#8CEDA8', // eating out
+  '#87E0C4', // eating out
   '#F0810A', // entertainment
   '#F0CD0A', // bills
   '#566378', // cart
-  '#F5776A', // transport
-  '#000000', // taxi
+  '#9F9E9D', // transport
+  '#9F9E9D', // taxi
   '#6A77F5', // cosmetic
   '#B935FF', // clothes
-  '#E66AF5', // gifts
+  '#E8B9CE', // gifts
   '#35FF91', // salary
 ]
 
 export const CATEGORIES_COLORS = [
   { key: 'house', value: '#53A4DD' },
-  { key: 'food', value: '#EC7AD2' },
-  { key: 'sports', value: '#87E0C4' },
+  { key: 'food', value: '#D68EC5' },
+  { key: 'sports', value: '#87CDE0' },
   { key: 'health', value: '#E13F3F' },
-  { key: 'eating out', value: '#8CEDA8' },
+  { key: 'eating out', value: '#87E0C4' },
   { key: 'entertainment', value: '#F0810A' },
   { key: 'bills', value: '#F0CD0A' },
   { key: 'car', value: '#566378' },
-  { key: 'transport', value: '#F5776A' },
-  { key: 'taxi', value: '#000000' },
+  { key: 'transport', value: '#9F9E9D' },
+  { key: 'taxi', value: '#9F9E9D' },
   { key: 'cosmetic', value: '#6A77F5' },
   { key: 'clothes', value: '#B935FF' },
-  { key: 'gifts', value: '#E66AF5' },
+  { key: 'gifts', value: '#E8B9CE' },
   { key: 'salary', value: '#35FF91' },
 ]
 
@@ -129,4 +131,11 @@ export function getColors() {
 
 export function getCategoriesColors() {
   return CATEGORIES_COLORS
+}
+
+export function getCategoryColor(catName) {
+  const keyValue = CATEGORIES_COLORS.find(
+    (cat) => cat.key === catName.toLowerCase()
+  )
+  return keyValue.value
 }
