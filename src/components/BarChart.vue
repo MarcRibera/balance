@@ -1,12 +1,9 @@
 <template>
-  <div class="">
-    <highcharts :options="options"></highcharts>
-  </div>
+  <highcharts :options="options"></highcharts>
 </template>
 
 <script>
 import { Chart } from 'highcharts-vue'
-//import { dateFormatter } from '@/utils/utils'
 
 export default {
   components: {
@@ -23,19 +20,8 @@ export default {
           text: this.title,
         },
         series: this.series,
-        // xAxis: {
-        //   categories: this.categories,
-        //   labels: {
-        //     formatter: function () {
-        //       if (this.categoriesAreDates) {
-        //         return dateFormatter(this.value);
-        //       }
-        //       return this.value;
-        //     },
-        //   },
-        // },
         xAxis: {
-          categories: this.categories ? this.categories : this.getSprintDays(),
+          categories: this.categories,
         },
         yAxis: {
           //min: 0,
@@ -65,25 +51,6 @@ export default {
       this.triggerToRender = true
     }, 1000)
   },
-  methods: {
-    getSprintDays() {
-      return [
-        'Wed 1',
-        'Thu 2',
-        'Fri 3',
-        'Sat 4',
-        'Sun 5',
-        'Mon 6',
-        'Tue 7',
-        'Wed 8',
-        'Thu 9',
-        'Fri 10',
-        'Sat 11',
-        'Sun 12',
-        'Mon 13',
-        'Thu 14',
-      ]
-    },
-  },
+  methods: {},
 }
 </script>

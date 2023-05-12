@@ -30,7 +30,7 @@
         <el-card
           shadow="always"
           :header="'BALANCE (Total)'"
-          :body-style="{ color: '#51e151', padding: '0px' }"
+          :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
         >
           <h2>{{ this.balanceTotal }}&euro;</h2>
         </el-card>
@@ -68,7 +68,7 @@
         <el-card
           shadow="always"
           :header="'BALANCE'"
-          :body-style="{ color: '#51e151', padding: '0px' }"
+          :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
         >
           <h2>{{ balanceAvgFormatted }}</h2>
         </el-card>
@@ -99,6 +99,7 @@ export default {
       inputTotal: null,
       outputTotal: null,
       balanceTotal: null,
+      BAL_POSITIVE_COLOR: '#228412',
     }
   },
   watch: {
