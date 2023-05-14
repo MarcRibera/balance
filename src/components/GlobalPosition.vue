@@ -1,88 +1,102 @@
 <template>
-  <el-card class="main-card">
-    <el-col :span="24" class="text-center">
-      <h3>GLOBAL POSITION</h3>
+  <div>
+    <el-col :span="24">
+      <h2>GLOBAL POSITION</h2>
     </el-col>
     <!-- Total values -->
-    <el-row class="text-center">
-      <h4>Total year values</h4>
-    </el-row>
-    <el-row :gutter="20" :type="'flex'" :justify="'center'">
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'INPUT (Total)'"
-          :body-style="{ color: '#7CB5EC', padding: '0px' }"
-        >
-          <h2>{{ this.inputTotal }}&euro;</h2>
-        </el-card>
-      </el-col>
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'OUTPUT (Total)'"
-          :body-style="{ color: '#303030', padding: '0px' }"
-        >
-          <h2>{{ this.outputTotal }}&euro;</h2>
-        </el-card>
-      </el-col>
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'BALANCE (Total)'"
-          :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
-        >
-          <h2>{{ this.balanceTotal }}&euro;</h2>
-        </el-card>
-      </el-col>
-    </el-row>
+    <div class="year-balance-view">
+      <el-row class="text-center">
+        <h3>Year Balance</h3>
+      </el-row>
+      <el-row :gutter="20" :type="'flex'" :justify="'center'">
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'INPUT (Total)'"
+            :body-style="{ color: '#7CB5EC', padding: '0px' }"
+          >
+            <h2>{{ this.inputTotal }}&euro;</h2>
+          </el-card>
+        </el-col>
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'OUTPUT (Total)'"
+            :body-style="{ color: '#303030', padding: '0px' }"
+          >
+            <h2>{{ this.outputTotal }}&euro;</h2>
+          </el-card>
+        </el-col>
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'BALANCE (Total)'"
+            :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
+          >
+            <h2>{{ this.balanceTotal }}&euro;</h2>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
     <!-- ./Total values -->
 
-    <!-- this slot is a "guarrada", but looks better is a chart is in the midle -->
-    <slot></slot>
+    <!-- line & barchart -->
+    <BarAndLineChart
+      :series="this.data"
+      :categories="monthNames"
+    ></BarAndLineChart>
+    <!-- ./line & barchart -->
 
     <!-- Monthly avg values -->
-    <el-row class="text-center">
-      <h3>Monthly average</h3>
-    </el-row>
-    <el-row :gutter="20" :type="'flex'" :justify="'center'">
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'INPUT'"
-          :body-style="{ color: '#7CB5EC', padding: '0px' }"
-        >
-          <h2>{{ inputAvgFormatted }}</h2>
-        </el-card>
-      </el-col>
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'OUTPUT'"
-          :body-style="{ color: '#303030', padding: '0px' }"
-        >
-          <h2>{{ outputAvgFormatted }}</h2>
-        </el-card>
-      </el-col>
-      <el-col :span="4" class="text-center">
-        <el-card
-          shadow="always"
-          :header="'BALANCE'"
-          :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
-        >
-          <h2>{{ balanceAvgFormatted }}</h2>
-        </el-card>
-      </el-col>
-    </el-row>
+    <div class="month-avg">
+      <el-row class="text-center">
+        <h3>Monthly average</h3>
+      </el-row>
+      <el-row :gutter="20" :type="'flex'" :justify="'center'">
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'INPUT'"
+            :body-style="{ color: '#7CB5EC', padding: '0px' }"
+          >
+            <h2>{{ inputAvgFormatted }}</h2>
+          </el-card>
+        </el-col>
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'OUTPUT'"
+            :body-style="{ color: '#303030', padding: '0px' }"
+          >
+            <h2>{{ outputAvgFormatted }}</h2>
+          </el-card>
+        </el-col>
+        <el-col :span="4" class="text-center">
+          <el-card
+            shadow="always"
+            :header="'BALANCE'"
+            :body-style="{ color: BAL_POSITIVE_COLOR, padding: '0px' }"
+          >
+            <h2>{{ balanceAvgFormatted }}</h2>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
     <!-- ./Monthly avg values -->
-  </el-card>
+  </div>
 </template>
 
 <script>
-import { sumArray, readableNumber, numberFormatter } from '@/utils/utils'
+import {
+  sumArray,
+  readableNumber,
+  numberFormatter,
+  getMonthNames,
+} from '@/utils/utils'
+import BarAndLineChart from './BarAndLineChart.vue'
 
 export default {
-  components: {},
+  components: { BarAndLineChart },
   props: {
     data: {
       type: Array,
@@ -121,6 +135,9 @@ export default {
     balanceAvgFormatted() {
       return numberFormatter(this.balanceAvg)
     },
+    monthNames() {
+      return getMonthNames()
+    },
   },
 
   methods: {
@@ -146,7 +163,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.main-card.el-card {
-  padding-bottom: 32px;
+.year-balance-view,
+.month-avg {
+  margin: 36px 0;
 }
 </style>

@@ -14,20 +14,18 @@
         ></DatePicker>
 
         <el-main>
-          <GlobalPosition :data="inoutYearData">
-            <MonthBarchart :data="inoutYearData"></MonthBarchart>
-          </GlobalPosition>
+          <GlobalPosition :data="inoutYearData"></GlobalPosition>
 
-          <GlobalExpenses
+          <GlobalPositionByCategory
             :yearData="inoutYearData"
             :categoriesData="currentYearTotalAmountByCategory"
-          ></GlobalExpenses>
+          ></GlobalPositionByCategory>
 
-          <CategoriesMonthBarChart
+          <MonthlyCharts
             :data="dataStructured"
             :currentYear="currentYear"
             @get-total-amount-by-category="getTotalAmountByCategory"
-          ></CategoriesMonthBarChart>
+          ></MonthlyCharts>
 
           <MonthMovements
             :data="dataStructured"
@@ -47,9 +45,8 @@
 <script>
 import LoadData from './components/LoadData.vue'
 import MonthMovements from './components/MonthMovements.vue'
-import MonthBarchart from './components/MonthBarchart.vue'
-import GlobalExpenses from './components/GlobalExpenses.vue'
-import CategoriesMonthBarChart from '@/components/CategoriesMonthBarChart.vue'
+import GlobalPositionByCategory from './components/GlobalPositionByCategory.vue'
+import MonthlyCharts from '@/components/MonthlyCharts.vue'
 import GlobalPosition from '@/components/GlobalPosition.vue'
 import TheFooter from '@/components/TheFooter.vue'
 import DatePicker from '@/components/DatePicker.vue'
@@ -59,12 +56,11 @@ export default {
   components: {
     LoadData,
     MonthMovements,
-    MonthBarchart,
     DatePicker,
-    CategoriesMonthBarChart,
+    MonthlyCharts,
     GlobalPosition,
     TheFooter,
-    GlobalExpenses,
+    GlobalPositionByCategory,
   },
 
   computed: {

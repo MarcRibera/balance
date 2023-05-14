@@ -1,24 +1,34 @@
 <template>
-  <el-collapse class="collapse" v-model="activeItem">
-    <el-card>
-      <el-collapse-item name="1" title="Monthly  Category Evolution">
-        <el-col :span="24">
-          <highcharts
-            v-show="!loadingData"
-            :options="lineChartOptions"
-          ></highcharts>
-        </el-col>
+  <div>
+    <h2>MONTHLY EXPENSES</h2>
+    <el-collapse class="collapse" v-model="activeItem">
+      <el-card>
+        <el-collapse-item name="1" title="Monthly  Category Evolution">
+          <!-- linechart -->
+          <el-col :span="24">
+            <highcharts
+              v-show="!loadingData"
+              :options="lineChartOptions"
+            ></highcharts>
+          </el-col>
+          <!-- ./linechart -->
 
-        <h2 style="padding: 0 8%">Top 7 Expensive Categories</h2>
-        <el-col :span="6" v-for="month in yearData" :key="month.name">
-          <highcharts
-            v-if="hasDataMonth(month)"
-            :options="getCurrentMonthOptions(month)"
-          ></highcharts>
-        </el-col>
-      </el-collapse-item>
-    </el-card>
-  </el-collapse>
+          <!-- Barchart -->
+
+          <el-col>
+            <h2 style="margin: 54px 0 0 0">.</h2>
+          </el-col>
+          <el-col :span="6" v-for="month in yearData" :key="month.name">
+            <highcharts
+              v-if="hasDataMonth(month)"
+              :options="getCurrentMonthOptions(month)"
+            ></highcharts>
+          </el-col>
+          <!-- ./Barchart -->
+        </el-collapse-item>
+      </el-card>
+    </el-collapse>
+  </div>
 </template>
 
 <script>
@@ -72,6 +82,9 @@ export default {
     },
     lineChartOptions() {
       return {
+        chart: {
+          type: 'spline',
+        },
         title: {
           text: this.title,
         },
@@ -94,6 +107,14 @@ export default {
           series: {
             dataLabels: {
               enabled: true,
+            },
+          },
+          spline: {
+            lineWidth: 5,
+            states: {
+              hover: {
+                lineWidth: 5,
+              },
             },
           },
         },
@@ -233,7 +254,7 @@ export default {
       linechartDataStructured: [],
       dataReceived: [],
       loadingData: false,
-      activeItem: '1',
+      activeItem: '0',
     }
   },
   created() {
@@ -250,5 +271,8 @@ export default {
   ::v-deep .el-card__body {
     padding: 10px 16px;
   }
+}
+.monthly-charts-wrapper {
+  margin-top: 24px;
 }
 </style>

@@ -78,6 +78,7 @@ export default {
     align-items: center;
     h5 {
       font-size: 12px;
+      margin: 4px;
     }
     h4 {
       margin: 4px;

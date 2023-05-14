@@ -1,5 +1,15 @@
 <template>
-  <highcharts :options="options"></highcharts>
+  <div>
+    <el-switch
+      v-model="isBarchartType"
+      inactive-color="#222222"
+      active-text="Barchart"
+      inactive-text="LineChart"
+    >
+    </el-switch>
+
+    <highcharts :options="options"></highcharts>
+  </div>
 </template>
 
 <script>
@@ -14,7 +24,8 @@ export default {
     options() {
       return {
         chart: {
-          type: 'column',
+          type: this.isBarchartType ? 'column' : 'spline',
+          height: '250px',
         },
         title: {
           text: this.title,
@@ -39,18 +50,33 @@ export default {
               x: 10,
             },
           },
+          spline: {
+            lineWidth: 4,
+            states: {
+              hover: {
+                lineWidth: 5,
+              },
+            },
+          },
         },
       }
     },
   },
   data() {
-    return {}
+    return {
+      chartType: 'column',
+      isBarchartType: true,
+    }
   },
   mounted() {
     setTimeout(() => {
       this.triggerToRender = true
     }, 1000)
   },
-  methods: {},
+  methods: {
+    setChartType(type) {
+      this.chartType = type
+    },
+  },
 }
 </script>

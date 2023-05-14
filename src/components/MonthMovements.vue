@@ -3,13 +3,7 @@
     <el-collapse class="collapse">
       <el-card>
         <el-collapse-item title="Monthly Movements">
-          <el-table
-            show-summary
-            :data="tableData"
-            stripe
-            style="width: 100%"
-            height="650"
-          >
+          <el-table :data="tableData" stripe style="width: 100%" height="650">
             <el-table-column prop="date" label="Date" width="180">
             </el-table-column>
             <el-table-column prop="category" label="Category" width="180">

@@ -1,6 +1,6 @@
 <template>
-  <el-col :span="24">
-    <h2>Global expenses by Category</h2>
+  <el-col :span="24" class="global-category-wrapper">
+    <h2>GLOBAL POSITION BY CATEGORY</h2>
     <p>
       Out & IN -> % based on Total Year Output or Input // Avg -> Monthly
       average
@@ -14,17 +14,30 @@
       >
       </MonthlyCard>
     </div>
+
+    <div>
+      <PieChart
+        :series="chartSeriesOut"
+        :title="'Percent based <br> on output'"
+      ></PieChart>
+    </div>
   </el-col>
 </template>
 
 <script>
-import { sumArray, round2decimals, readableNumber } from '@/utils/utils'
+import {
+  sumArray,
+  round2decimals,
+  readableNumber,
+  getCategoryColor,
+} from '@/utils/utils'
 import _clonedeep from 'lodash/cloneDeep'
 import MonthlyCard from './MonthlyCard.vue'
+import PieChart from './PieChart.vue'
 
 export default {
   name: 'GlobalExpenses',
-  components: { MonthlyCard },
+  components: { MonthlyCard, PieChart },
   props: {
     categoriesData: {
       type: Array,
@@ -52,6 +65,16 @@ export default {
     yearOutputAmount() {
       const yearOutputData = this.yearData.find((ele) => ele.name === 'output')
       return sumArray(yearOutputData.data)
+    },
+    chartSeriesOut() {
+      console.log('this.categoriesExpenses', this.categoriesExpenses)
+      return this.categoriesExpenses.map((cat) => {
+        return {
+          name: cat.name,
+          y: Number(cat.percentOnOutput),
+          color: getCategoryColor(cat.name),
+        }
+      })
     },
   },
   data() {
@@ -120,5 +143,11 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.global-category-wrapper {
+  margin-top: 36px;
 }
 </style>
